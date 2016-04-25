@@ -10,12 +10,13 @@ package java_subsystem_kitchen;
  * @author NickB
  */
 public class Java_Subsystem_Kitchen {
-
+    private String naam;
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
     }
     
 }
