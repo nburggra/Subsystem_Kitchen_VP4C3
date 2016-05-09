@@ -1,3 +1,4 @@
+<<<<<<< HEAD:src/java_subsystem_kitchen/Voorbeeld1.java
 package java_subsystem_kitchen;
 
 import javax.swing.JFrame;
@@ -46,3 +47,19 @@ class FlowLayoutpaneel extends JPanel {
         
     }
 }
+=======
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package datastorage;
+
+/**
+ *
+ * @author NickB
+ */
+public class Datastorage {
+    
+}
+>>>>>>> 6b774de236e936988c4938bfdf7eaee0fd9e16d5:src/datastorage/Datastorage.java

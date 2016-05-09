@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package java_subsystem_kitchen;
+package domain;
 
 /**
  *
  * @author NickB
  */
-public class voorbeeld2 {
+public class voorbeeld {
     
 }
