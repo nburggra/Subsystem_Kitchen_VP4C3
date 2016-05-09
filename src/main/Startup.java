@@ -9,7 +9,7 @@ package main;
  *
  * @author NickB
  */
-public class Java_Subsystem_Kitchen {
+public class Startup {
     private String naam;
     /**
      * @param args the command line arguments
