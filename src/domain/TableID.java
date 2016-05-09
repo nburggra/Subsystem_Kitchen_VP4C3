@@ -9,6 +9,6 @@ package domain;
  *
  * @author NickB
  */
-public class voorbeeld {
+public class TableID {
     
 }
