@@ -14,7 +14,6 @@ import java.util.Date;
 public class Order {
     
     private Order order;
-    private TableID tableID;
     
     /**
      * Constructor voor Loan. Omdat een Loan niet zonder Member en Copy
@@ -24,19 +23,18 @@ public class Order {
      * @param copy het Copy dat het Member heeft geleend
      * @param returnDate datum op welke het copy geretourneerd dient te worden.
      */
-    public Order(Order order , TableID tableID)
+    public Order(Order order)
     {
         this.order = order;
-        this.tableID = tableID;
     }
     
     /**
      * Accessor methode om het betrokken Member voor deze Order op te halen.
      * @return het betrokken Member
      */
-    public Member getMember()
+    public Order getOrder()
     {
-        return member;
+        return order;
     }
     
     /**
@@ -48,8 +46,4 @@ public class Order {
      * Accessor methode om de retourdaum voor deze Order op te halen.
      * @return de retourdatum
      */
-    public Date getReturnDate()
-    {
-        return returnDate;
-    }
 }

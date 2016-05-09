@@ -5,6 +5,7 @@
  */
 package datastorage;
 
+import domain.Order;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -35,20 +36,20 @@ public class OrderDAO
      * In case no loan could be found, still a valid ArrayList object is returned.
      * It does not contain any objects.
      */
-    public ArrayList<Loan> findBestelling(Member member)
+    public Order findBestelling(Order order)
     {
-        ArrayList<Loan> loans = new ArrayList<>();
+        ArrayList<Order> orders = new ArrayList<>();
         
-        if(member != null)
+        if(order != null)
         {
             // First open a database connnection
             DatabaseConnection connection = new DatabaseConnection();
             if(connection.openConnection())
             {
                 // If a connection was successfully setup, execute the SELECT statement.
-                int membershipNumber = member.getMembershipNumber();
+                
                 ResultSet resultset = connection.executeSQLSelectStatement(
-                    "SELECT * FROM loan WHERE MembershipNr = " + membershipNumber + ";");
+                    "SELECT * FROM bestelling");
 
                 if(resultset != null)
                 {
@@ -60,16 +61,15 @@ public class OrderDAO
                             // for this POC: no Copy objects are loaded. Having the
                             // Loan objects without the Copy objects will do fine
                             // to determine whether the owning Member can be removed.
-                            Date returnDate = resultset.getDate("ReturnDate");
+                            
 
-                            Bestelling newLoan = new Bestelling(returnDate, member, null);
-                            loans.add(newLoan);
+                            
                        }
                     }
                     catch(SQLException e)
                     {
                         System.out.println(e);
-                        loans.clear();
+                   
                     }
                 }
                 // else an error occurred leave array list empty.
@@ -80,6 +80,6 @@ public class OrderDAO
             }
         }
         
-        return loans;
+        return order;
     }
 }
