@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package java_subsystem_kitchen;
+package main;
 
 /**
  *
  * @author NickB
  */
-public class Java_Subsystem_Kitchen {
+public class Startup {
     private String naam;
     /**
      * @param args the command line arguments
