@@ -33,7 +33,7 @@ public class GUI extends JPanel{
         input1 = new JLabel("Naam gerecht");
         input2 = new JLabel("Prijs");
         input3 = new JLabel("Recept");
-        input4 = new JLabel("bereidingstijd");
+        input4 = new JLabel("Bereidingstijd");
         
         knop1 = new JButton("gerecht toevoegen");
         
