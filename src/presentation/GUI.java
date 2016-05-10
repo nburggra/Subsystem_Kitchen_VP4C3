@@ -5,6 +5,7 @@
  */
 package presentation;
 
+import businesslogic.OrderAdminManager;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -16,63 +17,95 @@ import java.awt.event.*;
 public class GUI extends JPanel{
 
      
-    public JTextField  inputVak1, inputVak2, inputVak3, inputVak4; 
-    private JLabel input1, input2, input3, input4;
-    private JButton knop1;
+    public JTextField  inputVakNaam, inputVakNr, inputVakPrijs, inputVakTijd;
+    public JTextArea outputVak;
+    private JLabel labelNaam, labelNr, labelPrijs, labelTijd;
+    private JButton knopToevoegen, knopZoekNaam, knopZoekNr;
 
+    private OrderAdminManager orderAdminManager;
     
     public GUI() {
     
         setLayout( null );
         
-        inputVak1 = new JTextField( 10 );
-        inputVak2 = new JTextField( 10 );
-        inputVak3 = new JTextField( 10 );
-        inputVak4 = new JTextField( 10 );
+        inputVakNaam = new JTextField(32);
+        inputVakNr = new JTextField(4);
+        inputVakPrijs = new JTextField(5);
+        inputVakTijd = new JTextField(3);
+        outputVak = new JTextArea();
         
-        input1 = new JLabel("Naam gerecht");
-        input2 = new JLabel("Prijs");
-        input3 = new JLabel("Recept");
-        input4 = new JLabel("bereidingstijd");
         
-        knop1 = new JButton("gerecht toevoegen");
+        labelNaam = new JLabel("Naam gerecht");
+        labelNr = new JLabel("Product ID");
+        labelPrijs = new JLabel("Prijs");
+        labelTijd = new JLabel("ber. tijd");
         
-        add(inputVak1);
-        add(inputVak2);
-        add(inputVak3);       
-        add(inputVak4);
+        knopToevoegen = new JButton("Gerecht toevoegen");
+        knopZoekNaam = new JButton("Zoek op naam");
+        knopZoekNr = new JButton("Update Bestelling");
+        
+        add(inputVakNaam);
+        add(inputVakNr);
+        add(inputVakPrijs);       
+        add(inputVakTijd);
+        add(outputVak);
 
         
-        add( input1);
-        add( input2);
-        add( input3);
-        add( input4);
+        add(labelNaam);
+        add(labelNr);
+        add(labelPrijs);
+        add(labelTijd);
         
-        add( knop1);
+        add(knopToevoegen);
+        add(knopZoekNaam);
+        add(knopZoekNr);
         
-        input1.setBounds( 80, 50, 120, 20);
-        inputVak1.setBounds( 180, 50, 90, 20);
+        inputVakNaam.setBounds(110,40,80,20);
+        inputVakNr.setBounds(110,70,80,20);
+        inputVakPrijs.setBounds(250,40,80,20);
+        inputVakTijd.setBounds(250,70,80,20);
         
-        input2.setBounds( 80, 80, 120, 20);
-        inputVak2.setBounds(180, 80, 90, 20);
+        outputVak.setBounds(20,120,340,80);
         
-        input3.setBounds( 80, 110, 120, 20);
-        inputVak3.setBounds(180, 110, 90, 20);
+        labelNaam.setBounds(20,40,80,20);
+        labelNr.setBounds(20,70,80,20);
+        labelPrijs.setBounds(200,40,80,20);
+        labelTijd.setBounds(200,70,80,20);
         
-        input4.setBounds( 80, 140, 120, 20);
-        inputVak4.setBounds( 180, 140, 90, 20);
+        knopToevoegen.setBounds(10,230,120,20);
+        knopZoekNaam.setBounds(130,230,120,20);
+        knopZoekNr.setBounds(250,230,120,20);
         
-        knop1.setBounds( 80, 180, 150, 20);
-        
-     class Knop1Handler implements ActionListener {
+        knopToevoegen.addActionListener( new KnopToevoegenHandler() );
+        knopZoekNaam.addActionListener( new KnopZoekNaamHandler() );
+        knopZoekNr.addActionListener( new KnopZoekNrHandler() );
+    }
+    
+     class KnopToevoegenHandler implements ActionListener {
         public void actionPerformed( ActionEvent e) {
             
-            inputVak1.setText(" ");
-            inputVak2.setText(" ");
-            inputVak3.setText(" ");
-            inputVak4.setText(" ");
+            inputVakNaam.setText(" ");
+            inputVakNr.setText(" ");
+            inputVakPrijs.setText(" ");
+            inputVakTijd.setText(" ");
 
         }
     }
-}
+     class KnopZoekNaamHandler implements ActionListener {
+        public void actionPerformed( ActionEvent e) {
+            
+            inputVakNaam.setText(" ");
+            inputVakNr.setText(" ");
+            inputVakPrijs.setText(" ");
+            inputVakTijd.setText(" ");
+
+        }
+    }
+     class KnopZoekNrHandler implements ActionListener {
+        public void actionPerformed( ActionEvent e) {
+            
+            outputVak.setText("" + orderAdminManager.findOrder());
+
+        }
+    }
 }

@@ -6,6 +6,8 @@
 package businesslogic;
 import datastorage.OrderDAO;
 import domain.Order;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -13,6 +15,15 @@ import domain.Order;
  */
 public class OrderAdminManager {
     
-  
+    private String orders;
+    
+    
+
+    
+      public String findOrder()
+    {   
+        
+        return orders;
+    }
     
 }

@@ -36,9 +36,9 @@ public class OrderDAO
      * In case no loan could be found, still a valid ArrayList object is returned.
      * It does not contain any objects.
      */
-    public Order findOrder(Order order)
+    public Order findOrder()
     {
-        ArrayList<Order> orders = new ArrayList<>();
+        Order order = null;
         
         if(order != null)
         {
@@ -60,15 +60,7 @@ public class OrderDAO
                             // The value for the CopyID in the row is ignored
                             // for this POC: no Copy objects are loaded. Having the
                             // Loan objects without the Copy objects will do fine
-                            // to determine whether the owning Member can be removed.
-                        int orderIDFromDb = resultset.getInt("orderID");
-                        int tafelIDFromDb = resultset.getInt("tafelID");
-                        String omschrijvingFromDb = resultset.getString("omschrijving");
-
-                        order = new Order(
-                            orderIDFromDb,
-                            tafelIDFromDb,
-                            omschrijvingFromDb);
+                            // to determine whether the owning Member can be rem
                         
                         
 
