@@ -13,7 +13,9 @@ import java.util.Date;
  */
 public class Order {
     
-    private Order order;
+    private int bestellingID;
+    private int tafelID;
+    private String omschrijving;
     
     /**
      * Constructor voor Loan. Omdat een Loan niet zonder Member en Copy
@@ -23,25 +25,55 @@ public class Order {
      * @param copy het Copy dat het Member heeft geleend
      * @param returnDate datum op welke het copy geretourneerd dient te worden.
      */
-    public Order(Order order)
+    public Order(int bestellingID , int tafelID , String omschrijving)
     {
-        this.order = order;
+        this.bestellingID = bestellingID;
+        this.tafelID = tafelID;
+        this.omschrijving = omschrijving;
     }
+    
+    
+        public int getBestellingID(){
+        
+            
+            return bestellingID;
+        }
+        
+        public void setBestellingID(int bestellingID){
+        
+            this.bestellingID = bestellingID;
+        }
+        
+        public int getTafelID(){
+        
+            return tafelID;
+        }
+        
+        public void setTafelID(int tafelID){
+        
+            this.tafelID = tafelID;
+        }
+        
+        public String getOmschrijving(){
+        
+            return omschrijving;
+        }
+        
+        public void setOmschrijving(String omschrijving){
+        
+            this.omschrijving = omschrijving;
+        }
+        
+        
+        
     
     /**
      * Accessor methode om het betrokken Member voor deze Order op te halen.
      * @return het betrokken Member
      */
-    public Order getOrder()
-    {
-        return order;
-    }
+
     
-    public void printOrder(){
-    
-       System.out.println("" + order);
-    
-    }
+
     /**
      * Accessor methode om het betrokken Copy voor deze Order op te halen.
      * @return het betrokken Copy
