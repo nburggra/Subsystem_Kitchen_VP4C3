@@ -37,6 +37,11 @@ public class Order {
         return order;
     }
     
+    public void printOrder(){
+    
+       System.out.println("" + order);
+    
+    }
     /**
      * Accessor methode om het betrokken Copy voor deze Order op te halen.
      * @return het betrokken Copy
