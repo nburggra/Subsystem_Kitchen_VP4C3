@@ -33,7 +33,7 @@ public class GerechtDAO {
      * In case no loan could be found, still a valid ArrayList object is returned.
      * It does not contain any objects.
      */
-    public Gerecht insertGerecht(Gerecht gerecht)
+    public Gerecht addGerecht(Gerecht gerecht)
     {
         
         
@@ -44,36 +44,12 @@ public class GerechtDAO {
             if(connection.openConnection())
             {
                 // If a connection was successfully setup, execute the SELECT statement.
-                String Naam = Gerecht.setNaam();
+                
                         
                 ResultSet resultset = connection.executeSQLSelectStatement(
                     "INSERT INTO gerecht (Naam,Prijs,Recept,Bereidgstijd) VALUES('')");
 
-                if(resultset != null)
-                {
-                    try
-                    {
-                        while(resultset.next())
-                        {
-                            // The value for the CopyID in the row is ignored
-                            // for this POC: no Copy objects are loaded. Having the
-                            // Loan objects without the Copy objects will do fine
-                            // to determine whether the owning Member can be removed.
-                            
-
-                            
-                       }
-                    }
-                    catch(SQLException e)
-                    {
-                        System.out.println(e);
-                   
-                    }
-                }
-                // else an error occurred leave array list empty.
-
-                // We had a database connection opened. Since we're finished,
-                // we need to close it.
+  
                 connection.closeConnection();
             }
         }
@@ -81,4 +57,3 @@ public class GerechtDAO {
        return gerecht; 
     }
 } 
-
