@@ -16,8 +16,8 @@ import java.awt.event.*;
 public class GUI extends JPanel{
 
      
-    public JTextField  inputVak1, inputVak2, inputVak3, inputVak4, inputVak5; 
-    private JLabel input1, input2, input3, input4, input5;
+    public JTextField  inputVak1, inputVak2, inputVak3, inputVak4; 
+    private JLabel input1, input2, input3, input4;
     private JButton knop1;
 
     
