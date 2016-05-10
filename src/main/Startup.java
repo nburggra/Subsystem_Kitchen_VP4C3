@@ -26,6 +26,10 @@ public class Startup {
        Frame.setTitle("Hartige Hap");
        Frame.setContentPane(new presentation.GUI());
        Frame.setVisible(true);
+       
+       
+       
+       
     }
     
 }

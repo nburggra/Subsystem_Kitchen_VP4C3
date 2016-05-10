@@ -4,11 +4,15 @@
  * and open the template in the editor.
  */
 package businesslogic;
+import datastorage.OrderDAO;
+import domain.Order;
 
 /**
  *
  * @author NickB
  */
-public class Admin {
+public class OrderAdminManager {
+    
+  
     
 }
