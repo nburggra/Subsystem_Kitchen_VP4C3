@@ -28,6 +28,8 @@ public class GUI extends JPanel{
     
         setLayout( null );
         
+        orderAdminManager = new OrderAdminManager();
+        
         inputVakNaam = new JTextField(32);
         inputVakNr = new JTextField(4);
         inputVakPrijs = new JTextField(5);
@@ -84,10 +86,20 @@ public class GUI extends JPanel{
      class KnopToevoegenHandler implements ActionListener {
         public void actionPerformed( ActionEvent e) {
             
+            String naam = inputVakNaam.getText();
+            //inputVakNr.getText();
+            double prijs = Double.parseDouble(inputVakPrijs.getText());
+            int tijd = Integer.parseInt(inputVakTijd.getText());
+            String gerecht = "temp"; 
+                    
+            orderAdminManager.saveGerecht(naam, prijs, gerecht, tijd);
+            
             inputVakNaam.setText(" ");
             inputVakNr.setText(" ");
             inputVakPrijs.setText(" ");
             inputVakTijd.setText(" ");
+            
+            
 
         }
     }
