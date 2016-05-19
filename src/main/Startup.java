@@ -5,10 +5,14 @@
  */
 package main;
 
+import datastorage.GerechtDAO;
+import domain.Gerecht;
 import domain.Order;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  *
@@ -20,6 +24,20 @@ public class Startup {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+        Locale.setDefault(Locale.ENGLISH);
+       
+       ArrayList<Gerecht> vg = (new GerechtDAO()).loadGerechten();
+       
+       for(Gerecht g : vg){
+       
+       g.print();
+       }
+       
+       Gerecht g = new Gerecht(007,"Voorbeeld7",5.50,"Voorbeeld7recept",6);
+       
+       (new GerechtDAO()).saveGerecht(g);
+        
        JFrame Frame = new JFrame();
        Frame.setSize(400, 300);
        Frame.setDefaultCloseOperation(

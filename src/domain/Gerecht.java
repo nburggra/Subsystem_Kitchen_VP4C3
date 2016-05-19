@@ -64,4 +64,10 @@ public class Gerecht {
     public void setBereidingstijd(int Bereidingstijd){
         this.Bereidingstijd = Bereidingstijd;
     }
+    
+    public void print(){
+    
+    System.out.printf("naam = %s , recept = %s , prijs = %f , "
+            + "bereidingstijd = %d\n", Naam,Recept,Prijs,Bereidingstijd);
+    }
 }

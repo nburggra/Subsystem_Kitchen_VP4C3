@@ -148,4 +148,27 @@ public class DatabaseConnection {
         
         return result;
     }
+    
+    
+    public ResultSet executeSQLInsertStatement(String query)
+    {
+        ResultSet rs = null;
+       
+        // First, check whether a some query was passed and the connection with
+        // the database.
+        if(query != null && connectionIsOpen())
+        {
+            // Then, if succeeded, execute the query.
+            try
+            {
+                statement.execute(query);
+            }
+            catch(SQLException e)
+            {
+                System.out.println(e);
+            }
+        }
+       
+        return rs;
+    }
 }
