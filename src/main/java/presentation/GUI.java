@@ -6,6 +6,7 @@
 package presentation;
 
 import businesslogic.OrderAdminManager;
+import domain.Gerecht;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -88,17 +89,21 @@ public class GUI extends JPanel{
             
             String naam = inputVakNaam.getText();
             //inputVakNr.getText();
-            double prijs = Double.parseDouble(inputVakPrijs.getText());
-            int tijd = Integer.parseInt(inputVakTijd.getText());
-            String gerecht = "temp"; 
-                    
-            orderAdminManager.saveGerecht(naam, prijs, gerecht, tijd);
-            
-            inputVakNaam.setText(" ");
-            inputVakNr.setText(" ");
-            inputVakPrijs.setText(" ");
-            inputVakTijd.setText(" ");
-            
+            try
+            {
+                double prijs = Double.parseDouble(inputVakPrijs.getText());
+                int tijd = Integer.parseInt(inputVakTijd.getText());
+                String gerecht = "temp"; 
+
+                orderAdminManager.saveGerecht(naam, prijs, gerecht, tijd);
+
+                setTextfieldsBlank();
+            }
+            catch(NumberFormatException nfe)
+            {
+                System.out.printf("exception");
+                setTextfieldsBlank();
+            }
             
 
         }
@@ -106,12 +111,39 @@ public class GUI extends JPanel{
      class KnopZoekNaamHandler implements ActionListener {
         public void actionPerformed( ActionEvent e) {
             
-            inputVakNaam.setText(" ");
-            inputVakNr.setText(" ");
-            inputVakPrijs.setText(" ");
-            inputVakTijd.setText(" ");
-
+            String nameInput = inputVakNaam.getText();
+            Gerecht g = orderAdminManager.findGerecht(nameInput);
+            
+            if (g == null)
+            {
+                setTextfieldsBlank();
+            }
+            else
+            {
+                String txt = String.format("Naam: %s, ID: %d, Prijs: %f"
+                        + ", Tijd: %d\n", g.getNaam(), g.getGerechtID(),
+                        g.getPrijs(), g.getBereidingstijd());
+                
+                appendToOutputTextArea(txt);
+            
+            }
         }
+    }
+
+     public void appendToOutputTextArea(String txt)
+     {
+         outputVak.setText(outputVak.getText() + txt);
+     }
+    public void setTextfieldsBlank() {
+        setTextFieldsText("","","","");
+    }
+
+    public void setTextFieldsText(String Naam, String Nr, String Prijs, 
+            String Tijd) {
+        inputVakNaam.setText(Naam);
+        inputVakNr.setText(Nr);
+        inputVakPrijs.setText(Prijs);
+        inputVakTijd.setText(Tijd);
     }
      class KnopZoekNrHandler implements ActionListener {
         public void actionPerformed( ActionEvent e) {

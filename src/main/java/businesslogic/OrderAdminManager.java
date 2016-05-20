@@ -17,11 +17,30 @@ import java.util.HashMap;
  */
 public class OrderAdminManager {
     
+    ArrayList<Gerecht> gerechten;
     private String orders;
     
-    
+    public OrderAdminManager()
+    {
+        gerechten = (new GerechtDAO()).loadGerechten();
+    }
 
-    
+    public Gerecht findGerecht(String name)
+    {
+        name = name.toLowerCase();
+        Gerecht ge = null;
+        for(Gerecht g : gerechten)
+        {
+            if (g.getNaam().toLowerCase().equals(name))
+            {
+                ge = g;
+                break;
+            }
+        }
+        
+        return ge;
+    }
+            
       public String findOrder()
     {   
         
