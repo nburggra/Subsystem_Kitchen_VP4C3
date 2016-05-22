@@ -17,7 +17,14 @@ import java.awt.event.*;
  */
 public class GUI extends JPanel{
 
-     
+    private javax.swing.JColorChooser jColorChooser1;
+    private javax.swing.JPanel jPanelLogin;
+    private javax.swing.JPanel jPanelList;
+    private javax.swing.JPanel jPanelInsert;
+    private javax.swing.JPanel jPanelSettings;
+    private javax.swing.JTabbedPane tabLogin , tabList , tabInsert , tabSettings;
+    
+    
     public JTextField  inputVakNaam, inputVakNr, inputVakPrijs, inputVakTijd;
     public JTextArea outputVak;
     private JLabel labelNaam, labelNr, labelPrijs, labelTijd;
@@ -30,6 +37,17 @@ public class GUI extends JPanel{
         setLayout( null );
         
         orderAdminManager = new OrderAdminManager();
+        
+        tabLogin = new JTabbedPane();
+        
+        tabList = new JTabbedPane();
+        tabInsert = new JTabbedPane();
+        tabSettings = new JTabbedPane();
+        
+        jPanelLogin = new JPanel();
+        jPanelList = new JPanel();
+        jPanelInsert = new JPanel();
+        jPanelSettings = new JPanel();
         
         inputVakNaam = new JTextField(32);
         inputVakNr = new JTextField(4);
@@ -47,6 +65,11 @@ public class GUI extends JPanel{
         knopZoekNaam = new JButton("Zoek op naam");
         knopZoekNr = new JButton("Update Bestelling");
         
+        tabLogin.addTab("Login", jPanelLogin);
+        tabList.addTab("Lijst", jPanelList);
+        tabInsert.addTab("Gerecht toevoegen", jPanelInsert);
+        tabSettings.addTab("Instellingen", jPanelSettings);
+        
         add(inputVakNaam);
         add(inputVakNr);
         add(inputVakPrijs);       
@@ -62,6 +85,15 @@ public class GUI extends JPanel{
         add(knopToevoegen);
         add(knopZoekNaam);
         add(knopZoekNr);
+        
+        add(tabLogin);
+        add(tabList);
+        add(tabInsert);
+        add(tabSettings);
+        
+        
+        
+        
         
         inputVakNaam.setBounds(110,40,80,20);
         inputVakNr.setBounds(110,70,80,20);

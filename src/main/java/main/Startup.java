@@ -39,13 +39,12 @@ public class Startup {
        (new GerechtDAO()).saveGerecht(g);
         
        JFrame Frame = new JFrame();
-       Frame.setSize(400, 300);
+       Frame.setSize(500, 400);
        Frame.setDefaultCloseOperation(
        JFrame.EXIT_ON_CLOSE);    
        Frame.setTitle("Hartige Hap");
-       Frame.setContentPane(new presentation.GUI());
+       Frame.setContentPane(new presentation.GUI2());
        Frame.setVisible(true);
-       
        
  
        
