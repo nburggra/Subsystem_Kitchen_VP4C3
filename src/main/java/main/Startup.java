@@ -1,3 +1,6 @@
+
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -43,7 +46,7 @@ public class Startup {
        Frame.setDefaultCloseOperation(
        JFrame.EXIT_ON_CLOSE);    
        Frame.setTitle("Hartige Hap");
-       Frame.setContentPane(new presentation.GUI2());
+       Frame.setContentPane(new presentation.GUI3());
        Frame.setVisible(true);
        
  

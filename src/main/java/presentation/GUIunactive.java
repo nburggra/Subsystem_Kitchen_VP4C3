@@ -15,7 +15,14 @@ import java.awt.event.*;
  *
  * @author NickB
  */
-public class GUI extends JPanel{
+
+/*
+ *  Inactive class 
+ *  GUI2 now active
+ * 
+ */
+
+public class GUIunactive extends JPanel{
 
     private javax.swing.JColorChooser jColorChooser1;
     private javax.swing.JPanel jPanelLogin;
@@ -32,7 +39,7 @@ public class GUI extends JPanel{
 
     private OrderAdminManager orderAdminManager;
     
-    public GUI() {
+    public GUIunactive() {
     
         setLayout( null );
         

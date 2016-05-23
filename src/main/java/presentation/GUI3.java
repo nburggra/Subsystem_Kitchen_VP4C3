@@ -14,59 +14,15 @@ import java.awt.event.ActionListener;
  *
  * @author NickB
  */
-public class GUI2 extends javax.swing.JPanel {
+
+public class GUI3 extends javax.swing.JPanel {
 
     /**
      * Creates new form NewJPanel
      */
-    public GUI2() {
+    public GUI3() {
         initComponents();
     }
-    
-        private javax.swing.JButton addMenuItemButton;
-    private javax.swing.JButton addToOrderButton;
-    private javax.swing.JCheckBox autoRefreshCheck;
-    private javax.swing.JButton deleteFromOrderButton;
-    private javax.swing.JCheckBox fullscreenCheck;
-    private javax.swing.JTextField inputOrderIDField;
-    private javax.swing.JColorChooser jColorChooser1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JButton loginButton;
-    private javax.swing.JButton logoutButton;
-    private javax.swing.JTextField menuItemNameField;
-    private javax.swing.JTextField menuItemPreptimeField;
-    private javax.swing.JTextField menuItemPriceField;
-    private javax.swing.JTextField menuItemRecipeField;
-    private javax.swing.JTextField menuItemSelectionField;
-    private javax.swing.JTextArea outputArea;
-    private javax.swing.JPasswordField passwordEntryField;
-    private javax.swing.JButton refreshButton;
-    private javax.swing.JButton searchMenuItemButton;
-    private javax.swing.JTextField signedInAsField;
-    private javax.swing.JTextField usernameEntryField;
-    
-    private OrderAdminManager orderAdminManager = new OrderAdminManager();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -91,7 +47,6 @@ public class GUI2 extends javax.swing.JPanel {
         loginButton = new javax.swing.JButton();
         logoutButton = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         refreshButton = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
@@ -101,6 +56,8 @@ public class GUI2 extends javax.swing.JPanel {
         deleteFromOrderButton = new javax.swing.JButton();
         inputOrderIDField = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        JTableOrders = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         menuItemNameField = new javax.swing.JTextField();
@@ -221,17 +178,6 @@ public class GUI2 extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Login", jPanel2);
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
         refreshButton.setText("Refresh");
         refreshButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -243,10 +189,10 @@ public class GUI2 extends javax.swing.JPanel {
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(refreshButton)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -301,21 +247,38 @@ public class GUI2 extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        JTableOrders.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, "Checkbox", "Checkbox"},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+            },
+            new String [] {
+                "ID", "Gerechten", "Gerecht bereid", "Gerecht verstuurt"
+            }
+        ));
+        jScrollPane4.setViewportView(JTableOrders);
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(18, 18, 18))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -323,7 +286,7 @@ public class GUI2 extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12))
@@ -352,10 +315,18 @@ public class GUI2 extends javax.swing.JPanel {
         jLabel6.setText("Bereidingstijd");
 
         addMenuItemButton.setText("Gerecht toevoegen");
-        addMenuItemButton.addActionListener(new addMenuItemButtonActionPerformed());
+        addMenuItemButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addMenuItemButtonActionPerformed(evt);
+            }
+        });
 
         searchMenuItemButton.setText("Zoek gerecht (op naam)");
-        searchMenuItemButton.addActionListener(new searchMenuItemButtonActionPerformed());
+        searchMenuItemButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchMenuItemButtonActionPerformed(evt);
+            }
+        });
 
         outputArea.setColumns(20);
         outputArea.setRows(5);
@@ -490,7 +461,14 @@ public class GUI2 extends javax.swing.JPanel {
     private void menuItemPreptimeFieldActionPerformed(java.awt.event.ActionEvent evt) {                                                      
         // TODO add your handling code here:
     }                                                     
-                                                                                                    
+
+    private void addMenuItemButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                  
+        // TODO add your handling code here:
+    }                                                 
+
+    private void searchMenuItemButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                     
+        // TODO add your handling code here:
+    }                                                    
 
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
         // TODO add your handling code here:
@@ -510,11 +488,9 @@ public class GUI2 extends javax.swing.JPanel {
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
         // TODO add your handling code here:
-    }                                            
-
-
+    }   
     
-        class addMenuItemButtonActionPerformed implements ActionListener {
+    class addMenuItemButtonActionPerformed implements ActionListener {
         public void actionPerformed( ActionEvent e) {
             
             String naam = menuItemNameField.getText();
@@ -538,6 +514,7 @@ public class GUI2 extends javax.swing.JPanel {
 
         }
     }
+    
      class searchMenuItemButtonActionPerformed implements ActionListener {
         public void actionPerformed( ActionEvent e) {
             
@@ -559,8 +536,8 @@ public class GUI2 extends javax.swing.JPanel {
             }
         }
     }
-
-     public void appendToOutputTextArea(String txt)
+     
+       public void appendToOutputTextArea(String txt)
      {
          outputArea.setText(outputArea.getText() + txt);
      }
@@ -582,5 +559,56 @@ public class GUI2 extends javax.swing.JPanel {
 
         }
     }
+                      
+
+
+
+    // Variables declaration - do not modify                     
+    private javax.swing.JTable JTableOrders;
+    private javax.swing.JButton addMenuItemButton;
+    private javax.swing.JButton addToOrderButton;
+    private javax.swing.JCheckBox autoRefreshCheck;
+    private javax.swing.JButton deleteFromOrderButton;
+    private javax.swing.JCheckBox fullscreenCheck;
+    private javax.swing.JTextField inputOrderIDField;
+    private javax.swing.JColorChooser jColorChooser1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JButton loginButton;
+    private javax.swing.JButton logoutButton;
+    private javax.swing.JTextField menuItemNameField;
+    private javax.swing.JTextField menuItemPreptimeField;
+    private javax.swing.JTextField menuItemPriceField;
+    private javax.swing.JTextField menuItemRecipeField;
+    private javax.swing.JTextField menuItemSelectionField;
+    private javax.swing.JTextArea outputArea;
+    private javax.swing.JPasswordField passwordEntryField;
+    private javax.swing.JButton refreshButton;
+    private javax.swing.JButton searchMenuItemButton;
+    private javax.swing.JTextField signedInAsField;
+    private javax.swing.JTextField usernameEntryField;
+    
+    private OrderAdminManager orderAdminManager = new OrderAdminManager();
     // End of variables declaration                   
 }
