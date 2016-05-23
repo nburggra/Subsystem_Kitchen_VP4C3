@@ -16,6 +16,7 @@ public class Order {
     private int bestellingID;
     private int tafelID;
     private String omschrijving;
+    private boolean status;
     
     /**
      * Constructor voor Loan. Omdat een Loan niet zonder Member en Copy
@@ -25,7 +26,7 @@ public class Order {
      * @param copy het Copy dat het Member heeft geleend
      * @param returnDate datum op welke het copy geretourneerd dient te worden.
      */
-    public Order(int bestellingID , int tafelID , String omschrijving)
+    public Order(int bestellingID , int tafelID , String omschrijving , boolean Status)
     {
         this.bestellingID = bestellingID;
         this.tafelID = tafelID;
@@ -63,6 +64,10 @@ public class Order {
         
             this.omschrijving = omschrijving;
         }
+        
+        public boolean getStatus(){ return status; }
+        
+        public void setStatus(){}
         
         
         

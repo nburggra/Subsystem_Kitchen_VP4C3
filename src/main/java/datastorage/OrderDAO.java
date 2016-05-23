@@ -83,4 +83,9 @@ public class OrderDAO
         
         return order;
     }
+    
+    public void changeStatusPrepared(){}
+    
+    public void changeStatusSend(){}
+    
 }

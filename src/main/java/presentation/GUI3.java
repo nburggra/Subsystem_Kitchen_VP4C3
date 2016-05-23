@@ -9,6 +9,7 @@ import businesslogic.OrderAdminManager;
 import domain.Gerecht;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -264,6 +265,8 @@ public class GUI3 extends javax.swing.JPanel {
                 "ID", "Gerechten", "Gerecht bereid", "Gerecht verstuurt"
             }
         ));
+        
+ 
         jScrollPane4.setViewportView(JTableOrders);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
