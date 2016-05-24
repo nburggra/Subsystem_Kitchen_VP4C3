@@ -24,7 +24,7 @@ public class GerechtDAO {
     }
     
     /**
-     * Tries to find the loans for the given in the persistent data store, in
+     * Tries to  the loans for the given in the persistent data store, in
      * this case a MySQL database.In this POC, the lend copies of the books are
      * not loaded - it is out of scope for now.
      * 

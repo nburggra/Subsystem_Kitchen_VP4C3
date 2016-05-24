@@ -5,6 +5,7 @@
  */
 package presentation;
 
+import businesslogic.GerechtAdminManager;
 import businesslogic.OrderAdminManager;
 import domain.Gerecht;
 import javax.swing.*;
@@ -38,6 +39,7 @@ public class GUIunactive extends JPanel{
     private JButton knopToevoegen, knopZoekNaam, knopZoekNr;
 
     private OrderAdminManager orderAdminManager;
+    private GerechtAdminManager gerechtAdminManager = new GerechtAdminManager();
     
     public GUIunactive() {
     
@@ -120,7 +122,7 @@ public class GUIunactive extends JPanel{
         
         knopToevoegen.addActionListener( new KnopToevoegenHandler() );
         knopZoekNaam.addActionListener( new KnopZoekNaamHandler() );
-        knopZoekNr.addActionListener( new KnopZoekNrHandler() );
+        knopZoekNr.addActionListener( new RefreshHandler() );
     }
     
      class KnopToevoegenHandler implements ActionListener {
@@ -134,7 +136,7 @@ public class GUIunactive extends JPanel{
                 int tijd = Integer.parseInt(inputVakTijd.getText());
                 String gerecht = "temp"; 
 
-                orderAdminManager.saveGerecht(naam, prijs, gerecht, tijd);
+                gerechtAdminManager.saveGerecht(naam, prijs, gerecht, tijd);
 
                 setTextfieldsBlank();
             }
@@ -151,7 +153,7 @@ public class GUIunactive extends JPanel{
         public void actionPerformed( ActionEvent e) {
             
             String nameInput = inputVakNaam.getText();
-            Gerecht g = orderAdminManager.findGerecht(nameInput);
+            Gerecht g = gerechtAdminManager.findGerecht(nameInput);
             
             if (g == null)
             {
@@ -184,11 +186,11 @@ public class GUIunactive extends JPanel{
         inputVakPrijs.setText(Prijs);
         inputVakTijd.setText(Tijd);
     }
-     class KnopZoekNrHandler implements ActionListener {
+     class RefreshHandler implements ActionListener {
         public void actionPerformed( ActionEvent e) {
             
-            outputVak.setText("" + orderAdminManager.findOrder());
+            orderAdminManager.findOrder();
 
         }
-    }
+}
 }

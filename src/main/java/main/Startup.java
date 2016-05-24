@@ -46,7 +46,7 @@ public class Startup {
        Frame.setDefaultCloseOperation(
        JFrame.EXIT_ON_CLOSE);    
        Frame.setTitle("Hartige Hap");
-       Frame.setContentPane(new presentation.GUI3());
+       Frame.setContentPane(new presentation.GUI4());
        Frame.setVisible(true);
        
  

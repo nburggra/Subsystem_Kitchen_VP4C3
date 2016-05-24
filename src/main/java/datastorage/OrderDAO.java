@@ -50,7 +50,7 @@ public class OrderDAO
                 
                         
                 ResultSet resultset = connection.executeSQLSelectStatement(
-                    "SELECT * FROM Order;");
+                    "SELECT * FROM Order");
                 
             try {
                 while(resultset.next()){
@@ -58,7 +58,7 @@ public class OrderDAO
                     int bestellingID = resultset.getInt("BestellingID");
                     int tafelID = resultset.getInt("TafelID");
                     String omschrijving =  resultset.getString("Omschrijving");
-                    boolean status = resultset.getBoolean("Status");
+                    String status = resultset.getString("Status");
                     
                     
                     // public Order(int bestellingID , int tafelID , String omschrijving , boolean Status)
@@ -78,4 +78,16 @@ public class OrderDAO
             
             return orderLijst;
     }
+   
+   public void setReady(){
+   
+       DatabaseConnection connection = new DatabaseConnection();
+            if(connection.openConnection())
+            {
+                    // change the status of an order.
+                
+                
+            }
+   
+   }
 } 

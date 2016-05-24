@@ -17,7 +17,7 @@ import java.util.HashMap;
  */
 public class OrderAdminManager {
     
-    ArrayList<Gerecht> gerechten;
+    private OrderDAO orderDAO = new OrderDAO();
     ArrayList<Order> orderLijst;
 
     public ArrayList<Order> getOrderLijst() {
@@ -28,44 +28,26 @@ public class OrderAdminManager {
     
     public OrderAdminManager()
     {
-        gerechten = (new GerechtDAO()).loadGerechten();
+
         orderLijst = new ArrayList<>();
         
         //   public Order(int bestellingID , int tafelID , String omschrijving , boolean status)
-        orderLijst.add( new Order(1,4,"pizza",false) );
-        orderLijst.add( new Order(2,4,"salade",false) );
-        orderLijst.add( new Order(3,2,"toetje",false) );
-        orderLijst.add( new Order(4,1,"soep",false) );
+        orderLijst.add( new Order(1,3,"Pizza","Received") );
+        orderLijst.add( new Order(2,4,"salade","Received") );
+        orderLijst.add( new Order(3,2,"toetje","Received") );
+        orderLijst.add( new Order(4,1,"soep","Received") );
     }
+    
 
-    public Gerecht findGerecht(String name)
-    {
-        name = name.toLowerCase();
-        Gerecht ge = null;
-        for(Gerecht g : gerechten)
-        {
-            if (g.getNaam().toLowerCase().equals(name))
-            {
-                ge = g;
-                break;
-            }
-        }
-        
-        return ge;
-    }
+
             
       public String findOrder()
     {   
+      
+        orderDAO.loadOrder();
         
         return orders;
     }
-      
-      public void saveGerecht(String Naam, double Prijs, String Recept, int Bereidingstijd){
-      
-          Gerecht g = new Gerecht(0, Naam, Prijs, Recept, Bereidingstijd);
-          
-          (new GerechtDAO()).saveGerecht(g);
-      
-      }
+    
     
 }

@@ -5,6 +5,7 @@
  */
 package presentation;
 
+import businesslogic.GerechtAdminManager;
 import businesslogic.OrderAdminManager;
 import domain.Gerecht;
 import domain.Order;
@@ -17,12 +18,12 @@ import javax.swing.table.DefaultTableModel;
  * @author NickB
  */
 
-public class GUI3 extends javax.swing.JPanel {
+public class GUI3unactive extends javax.swing.JPanel {
 
     /**
      * Creates new form NewJPanel
      */
-    public GUI3() {
+    public GUI3unactive() {
         initComponents(); // laad GUI elementen die door de designer ontworpen zijn.
         DefaultTableModel tm = (DefaultTableModel)JTableOrders.getModel();
         
@@ -33,10 +34,12 @@ public class GUI3 extends javax.swing.JPanel {
         {
             //new Object[]
             
-           String bid = "" +  o.getBestellingID();
-           String naam = "" + o.g
+           String bID = "" +  o.getBestellingID();
+           String tID = "" + o.getTafelID();
+           String oms = "" + o.getOmschrijving();
+           String sta = "" + o.getStatus();
            
-            Object[] row = new Object[]{"Column 1", "Column 2", "Column 3", "bhb"}; 
+            Object[] row = new Object[]{bID, tID, oms, sta}; 
             //Object[] row = new Object[]{}; 
             
             tm.insertRow(rowIndex, row);
@@ -44,10 +47,10 @@ public class GUI3 extends javax.swing.JPanel {
             rowIndex += 1;
         }
         
-                    Object[] row = new Object[]{"ghghghggh", "Column 2", "Column 3", "bhb"}; 
+           //         Object[] row = new Object[]{"ghghghggh", "Column 2", "Column 3", "bhb"}; 
             //Object[] row = new Object[]{}; 
             
-            tm.insertRow(rowIndex, row);
+        //    tm.insertRow(rowIndex, row);
     }
 
     private void orderTableClearAllRows(DefaultTableModel tm) {
@@ -537,7 +540,7 @@ public class GUI3 extends javax.swing.JPanel {
                 int tijd = Integer.parseInt(menuItemPreptimeField.getText());
                 String gerecht = "temp"; 
 
-                orderAdminManager.saveGerecht(naam, prijs, gerecht, tijd);
+                gerechtAdminManager.saveGerecht(naam, prijs, gerecht, tijd);
 
                 setTextfieldsBlank();
             }
@@ -555,7 +558,7 @@ public class GUI3 extends javax.swing.JPanel {
         public void actionPerformed( ActionEvent e) {
             
             String nameInput = menuItemNameField.getText();
-            Gerecht g = orderAdminManager.findGerecht(nameInput);
+            Gerecht g = gerechtAdminManager.findGerecht(nameInput);
             
             if (g == null)
             {
@@ -588,10 +591,10 @@ public class GUI3 extends javax.swing.JPanel {
         menuItemPriceField.setText(Prijs);
         menuItemPreptimeField.setText(Tijd);
     }
-     class KnopZoekNrHandler implements ActionListener {
+     class RefreshHandler implements ActionListener {
         public void actionPerformed( ActionEvent e) {
             
-            outputArea.setText("" + orderAdminManager.findOrder());
+            orderAdminManager.findOrder();
 
         }
     }
@@ -646,5 +649,6 @@ public class GUI3 extends javax.swing.JPanel {
     private javax.swing.JTextField usernameEntryField;
     
     private OrderAdminManager orderAdminManager = new OrderAdminManager();
+    private GerechtAdminManager gerechtAdminManager = new GerechtAdminManager();
     // End of variables declaration                   
 }
