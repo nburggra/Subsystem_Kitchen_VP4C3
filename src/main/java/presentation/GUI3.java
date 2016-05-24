@@ -7,6 +7,7 @@ package presentation;
 
 import businesslogic.OrderAdminManager;
 import domain.Gerecht;
+import domain.Order;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.table.DefaultTableModel;
@@ -22,7 +23,39 @@ public class GUI3 extends javax.swing.JPanel {
      * Creates new form NewJPanel
      */
     public GUI3() {
-        initComponents();
+        initComponents(); // laad GUI elementen die door de designer ontworpen zijn.
+        DefaultTableModel tm = (DefaultTableModel)JTableOrders.getModel();
+        
+        orderTableClearAllRows(tm);
+        
+        int rowIndex = 0;
+        for(Order o : orderAdminManager.getOrderLijst() )
+        {
+            //new Object[]
+            
+           String bid = "" +  o.getBestellingID();
+           String naam = "" + o.g
+           
+            Object[] row = new Object[]{"Column 1", "Column 2", "Column 3", "bhb"}; 
+            //Object[] row = new Object[]{}; 
+            
+            tm.insertRow(rowIndex, row);
+            
+            rowIndex += 1;
+        }
+        
+                    Object[] row = new Object[]{"ghghghggh", "Column 2", "Column 3", "bhb"}; 
+            //Object[] row = new Object[]{}; 
+            
+            tm.insertRow(rowIndex, row);
+    }
+
+    private void orderTableClearAllRows(DefaultTableModel tm) {
+        // Clear all rows
+        for (int i = 0; i < tm.getRowCount(); i++)
+        {
+            tm.removeRow(i);
+        }
     }
 
     /**

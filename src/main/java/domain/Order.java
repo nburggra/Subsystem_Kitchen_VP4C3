@@ -26,7 +26,7 @@ public class Order {
      * @param copy het Copy dat het Member heeft geleend
      * @param returnDate datum op welke het copy geretourneerd dient te worden.
      */
-    public Order(int bestellingID , int tafelID , String omschrijving , boolean Status)
+    public Order(int bestellingID , int tafelID , String omschrijving , boolean status)
     {
         this.bestellingID = bestellingID;
         this.tafelID = tafelID;

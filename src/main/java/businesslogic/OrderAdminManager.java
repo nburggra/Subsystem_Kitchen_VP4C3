@@ -18,11 +18,24 @@ import java.util.HashMap;
 public class OrderAdminManager {
     
     ArrayList<Gerecht> gerechten;
+    ArrayList<Order> orderLijst;
+
+    public ArrayList<Order> getOrderLijst() {
+        return orderLijst;
+    }
+    
     private String orders;
     
     public OrderAdminManager()
     {
         gerechten = (new GerechtDAO()).loadGerechten();
+        orderLijst = new ArrayList<>();
+        
+        //   public Order(int bestellingID , int tafelID , String omschrijving , boolean status)
+        orderLijst.add( new Order(1,4,"pizza",false) );
+        orderLijst.add( new Order(2,4,"salade",false) );
+        orderLijst.add( new Order(3,2,"toetje",false) );
+        orderLijst.add( new Order(4,1,"soep",false) );
     }
 
     public Gerecht findGerecht(String name)
