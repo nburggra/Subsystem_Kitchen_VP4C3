@@ -5,7 +5,9 @@
  */
 package presentation;
 
+import businesslogic.GerechtAdminManager;
 import businesslogic.OrderAdminManager;
+import datastorage.OrderDAO;
 import domain.Gerecht;
 import domain.Order;
 import java.awt.event.ActionEvent;
@@ -16,27 +18,30 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author NickB
  */
-
-public class GUI3 extends javax.swing.JPanel {
+public class GUI4 extends javax.swing.JPanel {
 
     /**
      * Creates new form NewJPanel
      */
-    public GUI3() {
-        initComponents(); // laad GUI elementen die door de designer ontworpen zijn.
+    public GUI4() {
+                initComponents(); // laad GUI elementen die door de designer ontworpen zijn.
         DefaultTableModel tm = (DefaultTableModel)JTableOrders.getModel();
         
         orderTableClearAllRows(tm);
+        
+       JTableOrders.setRowHeight(50);
         
         int rowIndex = 0;
         for(Order o : orderAdminManager.getOrderLijst() )
         {
             //new Object[]
             
-           String bid = "" +  o.getBestellingID();
-
+           String bID = "" +  o.getBestellingID();
+           String tID = "" + o.getTafelID();
+           String oms = "" + o.getOmschrijving();
+           String sta = "" + o.getStatus();
            
-            Object[] row = new Object[]{"Column 1", "Column 2", "Column 3", "bhb"}; 
+            Object[] row = new Object[]{bID, tID, oms, sta}; 
             //Object[] row = new Object[]{}; 
             
             tm.insertRow(rowIndex, row);
@@ -44,10 +49,10 @@ public class GUI3 extends javax.swing.JPanel {
             rowIndex += 1;
         }
         
-                    Object[] row = new Object[]{"ghghghggh", "Column 2", "Column 3", "bhb"}; 
+           //         Object[] row = new Object[]{"ghghghggh", "Column 2", "Column 3", "bhb"}; 
             //Object[] row = new Object[]{}; 
             
-            tm.insertRow(rowIndex, row);
+        //    tm.insertRow(rowIndex, row);
     }
 
     private void orderTableClearAllRows(DefaultTableModel tm) {
@@ -83,6 +88,9 @@ public class GUI3 extends javax.swing.JPanel {
         jPanel4 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         refreshButton = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         menuItemSelectionField = new javax.swing.JTextField();
@@ -219,13 +227,32 @@ public class GUI3 extends javax.swing.JPanel {
             }
         });
 
+        jLabel12.setText("ID");
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Klaar");
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(refreshButton)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(0, 2, Short.MAX_VALUE)
+                        .addComponent(refreshButton))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
@@ -233,7 +260,13 @@ public class GUI3 extends javax.swing.JPanel {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(refreshButton)
-                .addContainerGap(137, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addContainerGap())
         );
 
         jLabel11.setText("Gerecht");
@@ -283,7 +316,7 @@ public class GUI3 extends javax.swing.JPanel {
 
         JTableOrders.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, "Checkbox", "Checkbox"},
+                {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
@@ -298,8 +331,6 @@ public class GUI3 extends javax.swing.JPanel {
                 "ID", "Gerechten", "Gerecht bereid", "Gerecht verstuurt"
             }
         ));
-        
- 
         jScrollPane4.setViewportView(JTableOrders);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -321,7 +352,9 @@ public class GUI3 extends javax.swing.JPanel {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(29, 29, 29))
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -524,9 +557,13 @@ public class GUI3 extends javax.swing.JPanel {
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
         // TODO add your handling code here:
-    }   
+    }                                            
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        // TODO add your handling code here:
+    }     
     
-    class addMenuItemButtonActionPerformed implements ActionListener {
+        class addMenuItemButtonActionPerformed implements ActionListener {
         public void actionPerformed( ActionEvent e) {
             
             String naam = menuItemNameField.getText();
@@ -537,7 +574,7 @@ public class GUI3 extends javax.swing.JPanel {
                 int tijd = Integer.parseInt(menuItemPreptimeField.getText());
                 String gerecht = "temp"; 
 
-                orderAdminManager.saveGerecht(naam, prijs, gerecht, tijd);
+                gerechtAdminManager.saveGerecht(naam, prijs, gerecht, tijd);
 
                 setTextfieldsBlank();
             }
@@ -555,7 +592,7 @@ public class GUI3 extends javax.swing.JPanel {
         public void actionPerformed( ActionEvent e) {
             
             String nameInput = menuItemNameField.getText();
-            Gerecht g = orderAdminManager.findGerecht(nameInput);
+            Gerecht g = gerechtAdminManager.findGerecht(nameInput);
             
             if (g == null)
             {
@@ -588,15 +625,16 @@ public class GUI3 extends javax.swing.JPanel {
         menuItemPriceField.setText(Prijs);
         menuItemPreptimeField.setText(Tijd);
     }
-     class KnopZoekNrHandler implements ActionListener {
+     class RefreshHandler implements ActionListener {
         public void actionPerformed( ActionEvent e) {
             
-            outputArea.setText("" + orderAdminManager.findOrder());
+            
+            orderAdminManager.findOrder();
+            
+            
 
         }
     }
-                      
-
 
 
     // Variables declaration - do not modify                     
@@ -607,10 +645,12 @@ public class GUI3 extends javax.swing.JPanel {
     private javax.swing.JButton deleteFromOrderButton;
     private javax.swing.JCheckBox fullscreenCheck;
     private javax.swing.JTextField inputOrderIDField;
+    private javax.swing.JButton jButton1;
     private javax.swing.JColorChooser jColorChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -628,9 +668,9 @@ public class GUI3 extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton loginButton;
     private javax.swing.JButton logoutButton;
     private javax.swing.JTextField menuItemNameField;
@@ -645,6 +685,9 @@ public class GUI3 extends javax.swing.JPanel {
     private javax.swing.JTextField signedInAsField;
     private javax.swing.JTextField usernameEntryField;
     
-    private OrderAdminManager orderAdminManager = new OrderAdminManager();
+     private OrderAdminManager orderAdminManager = new OrderAdminManager();
+     private GerechtAdminManager gerechtAdminManager = new GerechtAdminManager();
+     private OrderDAO orderDAO = new OrderDAO();
+    
     // End of variables declaration                   
 }
