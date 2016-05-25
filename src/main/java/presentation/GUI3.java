@@ -34,7 +34,7 @@ public class GUI3 extends javax.swing.JPanel {
             //new Object[]
             
            String bid = "" +  o.getBestellingID();
-           String naam = "" + o.g
+
            
             Object[] row = new Object[]{"Column 1", "Column 2", "Column 3", "bhb"}; 
             //Object[] row = new Object[]{}; 
