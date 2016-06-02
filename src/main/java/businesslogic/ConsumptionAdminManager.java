@@ -5,31 +5,31 @@
  */
 package businesslogic;
 
-import datastorage.GerechtDAO;
-import domain.Gerecht;
+import datastorage.ConsumptionDAO;
+import domain.Consumption;
 import java.util.ArrayList;
 
 /**
  *
  * @author NickB
  */
-public class GerechtAdminManager {
+public class ConsumptionAdminManager {
     
-    ArrayList<Gerecht> gerechten;
+    ArrayList<Consumption> gerechten;
     
-        public GerechtAdminManager(){
+        public ConsumptionAdminManager(){
         
-        gerechten = (new GerechtDAO()).loadGerechten();
+        gerechten = (new ConsumptionDAO()).loadGerechten();
         
         
         
         }
         
-            public Gerecht findGerecht(String name)
+            public Consumption findGerecht(String name)
     {
         name = name.toLowerCase();
-        Gerecht ge = null;
-        for(Gerecht g : gerechten)
+        Consumption ge = null;
+        for(Consumption g : gerechten)
         {
             if (g.getNaam().toLowerCase().equals(name))
             {
@@ -44,9 +44,9 @@ public class GerechtAdminManager {
     
           public void saveGerecht(String Naam, double Prijs, String Recept, int Bereidingstijd){
       
-          Gerecht g = new Gerecht(0, Naam, Prijs, Recept, Bereidingstijd);
+          Consumption g = new Consumption(0, Naam, Prijs, Recept, Bereidingstijd);
           
-          (new GerechtDAO()).saveGerecht(g);
+          (new ConsumptionDAO()).saveGerecht(g);
       
       }
 }

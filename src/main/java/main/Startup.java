@@ -8,8 +8,8 @@
  */
 package main;
 
-import datastorage.GerechtDAO;
-import domain.Gerecht;
+import datastorage.ConsumptionDAO;
+import domain.Consumption;
 import domain.Order;
 import javax.swing.*;
 import java.awt.*;
@@ -30,16 +30,16 @@ public class Startup {
         
         Locale.setDefault(Locale.ENGLISH);
        
-       ArrayList<Gerecht> vg = (new GerechtDAO()).loadGerechten();
+       /* ArrayList<Gerecht> vg = (new ConsumptionDAO()).loadGerechten();
        
-       for(Gerecht g : vg){
+       for(Consumption g : vg){
        
        g.print();
        }
        
-       Gerecht g = new Gerecht(007,"Voorbeeld7",5.50,"Voorbeeld7recept",6);
+       Consumption g = new Consumption(007,"Voorbeeld7",5.50,"Voorbeeld7recept",6);
        
-       (new GerechtDAO()).saveGerecht(g);
+       (new ConsumptionDAO()).saveGerecht(g); */
         
        JFrame Frame = new JFrame();
        Frame.setSize(500, 400);

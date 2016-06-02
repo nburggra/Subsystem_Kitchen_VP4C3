@@ -5,7 +5,7 @@
  */
 package datastorage;
 
-import domain.Gerecht;
+import domain.Consumption;
 import domain.Order;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -39,7 +39,7 @@ public class OrderDAO
      * In case no loan could be found, still a valid ArrayList object is returned.
      * It does not contain any objects.
      */
-   public ArrayList<Order> loadOrder() {
+   public ArrayList<Order> loadOrders() {
     
         ArrayList<Order> orderLijst = new ArrayList<>();
         
@@ -50,14 +50,14 @@ public class OrderDAO
                 
                         
                 ResultSet resultset = connection.executeSQLSelectStatement(
-                    "SELECT * FROM Order");
+                    "SELECT * FROM `order`");
                 
             try {
                 while(resultset.next()){
                     
-                    int bestellingID = resultset.getInt("BestellingID");
+                    int bestellingID = resultset.getInt("OrderID");
                     int tafelID = resultset.getInt("TafelID");
-                    String omschrijving =  resultset.getString("Omschrijving");
+                    String omschrijving =  resultset.getString("Consumptions");
                     String status = resultset.getString("Status");
                     
                     
@@ -69,7 +69,7 @@ public class OrderDAO
                     
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(GerechtDAO.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ConsumptionDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
 
   
@@ -79,14 +79,21 @@ public class OrderDAO
             return orderLijst;
     }
    
-   public void setReady(){
+   public void changeOrderStatus(int orderId, String Status){
    
-       DatabaseConnection connection = new DatabaseConnection();
+DatabaseConnection connection = new DatabaseConnection();
             if(connection.openConnection())
             {
-                    // change the status of an order.
+                // If a connection was successfully setup, execute the SELECT statement.
                 
+                String execStr = String.format("UPDATE `order` SET Status='%s'"
+                        + " WHERE OrderID='%d'", Status, orderId);
+                        
+                // System.out.println(execStr);
                 
+                connection.executeSQLUpdateStatement(execStr);
+
+                connection.closeConnection();
             }
    
    }

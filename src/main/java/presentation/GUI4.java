@@ -5,10 +5,10 @@
  */
 package presentation;
 
-import businesslogic.GerechtAdminManager;
+import businesslogic.ConsumptionAdminManager;
 import businesslogic.OrderAdminManager;
 import datastorage.OrderDAO;
-import domain.Gerecht;
+import domain.Consumption;
 import domain.Order;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,42 +24,65 @@ public class GUI4 extends javax.swing.JPanel {
      * Creates new form NewJPanel
      */
     public GUI4() {
-                initComponents(); // laad GUI elementen die door de designer ontworpen zijn.
-        DefaultTableModel tm = (DefaultTableModel)JTableOrders.getModel();
+        initComponents(); // laad GUI elementen die door de designer ontworpen zijn.
         
-        orderTableClearAllRows(tm);
+        JTableOrders.setRowHeight(50);
         
-       JTableOrders.setRowHeight(50);
-        
+        doOrdersTableRefresh();
+    }
+
+    private void fillOrdersTable(DefaultTableModel tm) {
         int rowIndex = 0;
+        
         for(Order o : orderAdminManager.getOrderLijst() )
-        {
-            //new Object[]
+        {      
             
-           String bID = "" +  o.getBestellingID();
-           String tID = "" + o.getTafelID();
-           String oms = "" + o.getOmschrijving();
-           String sta = "" + o.getStatus();
-           
-            Object[] row = new Object[]{bID, tID, oms, sta}; 
-            //Object[] row = new Object[]{}; 
+            if (o.getStatus().equals("Sent")) continue;
             
+            String bID = "" + o.getBestellingID();
+            String tID = "" + o.getTafelID();
+            String oms = "" + o.getOmschrijving();
+            String sta = "" + o.getStatus();
+            
+            Object[] row = new Object[]{bID, tID, oms, sta};
             tm.insertRow(rowIndex, row);
             
             rowIndex += 1;
         }
-        
-           //         Object[] row = new Object[]{"ghghghggh", "Column 2", "Column 3", "bhb"}; 
-            //Object[] row = new Object[]{}; 
-            
-        //    tm.insertRow(rowIndex, row);
     }
 
-    private void orderTableClearAllRows(DefaultTableModel tm) {
-        // Clear all rows
-        for (int i = 0; i < tm.getRowCount(); i++)
+    private void orderTableClearAllRows(DefaultTableModel tm) {    
+        int rowCount = tm.getRowCount();
+        
+        for (int i = 0; i < rowCount; i++)
         {
-            tm.removeRow(i);
+            tm.removeRow(0);
+        }
+    }
+    
+    private void doOrdersTableRefresh()
+    {
+        // reload orders from database
+        orderAdminManager.refreshOrdersList();
+        
+        DefaultTableModel tm = (DefaultTableModel)JTableOrders.getModel();
+        orderTableClearAllRows(tm);
+        fillOrdersTable(tm);
+     //   jTabbedPane1.setEnabledAt(3, false);
+        
+    }
+    
+    private void doReadyButtonPress()
+    {
+        try
+        {
+            int orderId = Integer.parseInt(readyIdTF.getText());
+            orderAdminManager.updateOrderStatus("Ready", orderId);
+            doOrdersTableRefresh();       
+        }
+        catch(NumberFormatException nfe)
+        {
+            
         }
     }
 
@@ -89,8 +112,8 @@ public class GUI4 extends javax.swing.JPanel {
         jPanel8 = new javax.swing.JPanel();
         refreshButton = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        readyIdTF = new javax.swing.JTextField();
+        readyButton = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         menuItemSelectionField = new javax.swing.JTextField();
@@ -229,13 +252,15 @@ public class GUI4 extends javax.swing.JPanel {
 
         jLabel12.setText("ID");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        readyIdTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Klaar");
+        readyButton.setText("Klaar");
+        readyButton.addActionListener(a1 -> doReadyButtonPress());
+        
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -244,14 +269,14 @@ public class GUI4 extends javax.swing.JPanel {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(readyButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGap(0, 2, Short.MAX_VALUE)
                         .addComponent(refreshButton))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(readyIdTF, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -262,10 +287,10 @@ public class GUI4 extends javax.swing.JPanel {
                 .addComponent(refreshButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(readyIdTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(readyButton)
                 .addContainerGap())
         );
 
@@ -384,11 +409,7 @@ public class GUI4 extends javax.swing.JPanel {
         jLabel6.setText("Bereidingstijd");
 
         addMenuItemButton.setText("Gerecht toevoegen");
-        addMenuItemButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addMenuItemButtonActionPerformed(evt);
-            }
-        });
+        addMenuItemButton.addActionListener(new addMenuItemButtonActionPerformed());
 
         searchMenuItemButton.setText("Zoek gerecht (op naam)");
         searchMenuItemButton.addActionListener(new java.awt.event.ActionListener() {
@@ -530,17 +551,14 @@ public class GUI4 extends javax.swing.JPanel {
     private void menuItemPreptimeFieldActionPerformed(java.awt.event.ActionEvent evt) {                                                      
         // TODO add your handling code here:
     }                                                     
-
-    private void addMenuItemButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                  
-        // TODO add your handling code here:
-    }                                                 
+                                           
 
     private void searchMenuItemButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                     
         // TODO add your handling code here:
     }                                                    
 
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
-        // TODO add your handling code here:
+        doOrdersTableRefresh();
     }                                             
 
     private void signedInAsFieldActionPerformed(java.awt.event.ActionEvent evt) {                                                
@@ -572,9 +590,9 @@ public class GUI4 extends javax.swing.JPanel {
             {
                 double prijs = Double.parseDouble(menuItemPriceField.getText());
                 int tijd = Integer.parseInt(menuItemPreptimeField.getText());
-                String gerecht = "temp"; 
+                String gerecht = menuItem.getText(); 
 
-                gerechtAdminManager.saveGerecht(naam, prijs, gerecht, tijd);
+                consumptionAdminManager.saveGerecht(naam, prijs, gerecht, tijd);
 
                 setTextfieldsBlank();
             }
@@ -592,7 +610,7 @@ public class GUI4 extends javax.swing.JPanel {
         public void actionPerformed( ActionEvent e) {
             
             String nameInput = menuItemNameField.getText();
-            Gerecht g = gerechtAdminManager.findGerecht(nameInput);
+            Consumption g = consumptionAdminManager.findGerecht(nameInput);
             
             if (g == null)
             {
@@ -602,7 +620,7 @@ public class GUI4 extends javax.swing.JPanel {
             {
                 String txt = String.format("Naam: %s, ID: %d, Prijs: %f"
                         + ", Tijd: %d\n", g.getNaam(), g.getGerechtID(),
-                        g.getPrijs(), g.getBereidingstijd());
+                        g.getPrice(), g.getPreparationTime());
                 
                 appendToOutputTextArea(txt);
             
@@ -629,7 +647,7 @@ public class GUI4 extends javax.swing.JPanel {
         public void actionPerformed( ActionEvent e) {
             
             
-            orderAdminManager.findOrder();
+      //      orderAdminManager.findOrder();
             
             
 
@@ -645,7 +663,7 @@ public class GUI4 extends javax.swing.JPanel {
     private javax.swing.JButton deleteFromOrderButton;
     private javax.swing.JCheckBox fullscreenCheck;
     private javax.swing.JTextField inputOrderIDField;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton readyButton;
     private javax.swing.JColorChooser jColorChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -670,7 +688,7 @@ public class GUI4 extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField readyIdTF;
     private javax.swing.JButton loginButton;
     private javax.swing.JButton logoutButton;
     private javax.swing.JTextField menuItemNameField;
@@ -686,7 +704,7 @@ public class GUI4 extends javax.swing.JPanel {
     private javax.swing.JTextField usernameEntryField;
     
      private OrderAdminManager orderAdminManager = new OrderAdminManager();
-     private GerechtAdminManager gerechtAdminManager = new GerechtAdminManager();
+     private ConsumptionAdminManager consumptionAdminManager = new ConsumptionAdminManager();
      private OrderDAO orderDAO = new OrderDAO();
     
     // End of variables declaration                   

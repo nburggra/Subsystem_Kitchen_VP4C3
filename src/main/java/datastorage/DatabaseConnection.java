@@ -42,7 +42,7 @@ public class DatabaseConnection {
             {   
                 // Try to create a connection with the library database
                 connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost/gerecht" , "root", "");
+                    "jdbc:mysql://145.48.6.148/23ivp4c3" , "vp4c3", "96121103");
 
                 if(connection != null)
                 {
@@ -87,6 +87,12 @@ public class DatabaseConnection {
         
         return open;
     }
+
+    public Connection getConnection() {
+        return connection;
+    }
+    
+    
     
     public void closeConnection()
     {
@@ -125,6 +131,12 @@ public class DatabaseConnection {
         return resultset;
     }
     
+    public boolean executeSQLUpdateStatement(String query)
+    {
+        return executeSQLDeleteStatement(query);
+    }
+        
+        
     public boolean executeSQLDeleteStatement(String query)
     {
         boolean result = false;

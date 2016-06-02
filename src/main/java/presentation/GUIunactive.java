@@ -5,9 +5,9 @@
  */
 package presentation;
 
-import businesslogic.GerechtAdminManager;
+import businesslogic.ConsumptionAdminManager;
 import businesslogic.OrderAdminManager;
-import domain.Gerecht;
+import domain.Consumption;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -39,7 +39,7 @@ public class GUIunactive extends JPanel{
     private JButton knopToevoegen, knopZoekNaam, knopZoekNr;
 
     private OrderAdminManager orderAdminManager;
-    private GerechtAdminManager gerechtAdminManager = new GerechtAdminManager();
+    private ConsumptionAdminManager gerechtAdminManager = new ConsumptionAdminManager();
     
     public GUIunactive() {
     
@@ -153,7 +153,7 @@ public class GUIunactive extends JPanel{
         public void actionPerformed( ActionEvent e) {
             
             String nameInput = inputVakNaam.getText();
-            Gerecht g = gerechtAdminManager.findGerecht(nameInput);
+            Consumption g = gerechtAdminManager.findGerecht(nameInput);
             
             if (g == null)
             {
@@ -163,7 +163,7 @@ public class GUIunactive extends JPanel{
             {
                 String txt = String.format("Naam: %s, ID: %d, Prijs: %f"
                         + ", Tijd: %d\n", g.getNaam(), g.getGerechtID(),
-                        g.getPrijs(), g.getBereidingstijd());
+                        g.getPrice(), g.getPreparationTime());
                 
                 appendToOutputTextArea(txt);
             
@@ -189,7 +189,7 @@ public class GUIunactive extends JPanel{
      class RefreshHandler implements ActionListener {
         public void actionPerformed( ActionEvent e) {
             
-            orderAdminManager.findOrder();
+        //    orderAdminManager.findOrder();
 
         }
 }

@@ -5,9 +5,9 @@
  */
 package presentation;
 
-import businesslogic.GerechtAdminManager;
+import businesslogic.ConsumptionAdminManager;
 import businesslogic.OrderAdminManager;
-import domain.Gerecht;
+import domain.Consumption;
 import domain.Order;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -34,15 +34,15 @@ public class GUI3unactive extends javax.swing.JPanel {
         {
             //new Object[]
             
-<<<<<<< HEAD:src/main/java/presentation/GUI3.java
+// <<<<<<< HEAD:src/main/java/presentation/GUI3.java
            String bid = "" +  o.getBestellingID();
 
-=======
+// =======
            String bID = "" +  o.getBestellingID();
            String tID = "" + o.getTafelID();
            String oms = "" + o.getOmschrijving();
            String sta = "" + o.getStatus();
->>>>>>> f4f1b8d830a6f157bdb418aa716a9ab57fff2385:src/main/java/presentation/GUI3unactive.java
+// >>>>>>> f4f1b8d830a6f157bdb418aa716a9ab57fff2385:src/main/java/presentation/GUI3unactive.java
            
             Object[] row = new Object[]{bID, tID, oms, sta}; 
             //Object[] row = new Object[]{}; 
@@ -563,7 +563,7 @@ public class GUI3unactive extends javax.swing.JPanel {
         public void actionPerformed( ActionEvent e) {
             
             String nameInput = menuItemNameField.getText();
-            Gerecht g = gerechtAdminManager.findGerecht(nameInput);
+            Consumption g = gerechtAdminManager.findGerecht(nameInput);
             
             if (g == null)
             {
@@ -573,7 +573,7 @@ public class GUI3unactive extends javax.swing.JPanel {
             {
                 String txt = String.format("Naam: %s, ID: %d, Prijs: %f"
                         + ", Tijd: %d\n", g.getNaam(), g.getGerechtID(),
-                        g.getPrijs(), g.getBereidingstijd());
+                        g.getPrice(), g.getPreparationTime());
                 
                 appendToOutputTextArea(txt);
             
@@ -599,7 +599,7 @@ public class GUI3unactive extends javax.swing.JPanel {
      class RefreshHandler implements ActionListener {
         public void actionPerformed( ActionEvent e) {
             
-            orderAdminManager.findOrder();
+       //     orderAdminManager.findOrder();
 
         }
     }
@@ -654,6 +654,6 @@ public class GUI3unactive extends javax.swing.JPanel {
     private javax.swing.JTextField usernameEntryField;
     
     private OrderAdminManager orderAdminManager = new OrderAdminManager();
-    private GerechtAdminManager gerechtAdminManager = new GerechtAdminManager();
+    private ConsumptionAdminManager gerechtAdminManager = new ConsumptionAdminManager();
     // End of variables declaration                   
 }
