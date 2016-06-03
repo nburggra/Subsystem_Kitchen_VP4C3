@@ -590,7 +590,7 @@ public class GUI4 extends javax.swing.JPanel {
             {
                 double prijs = Double.parseDouble(menuItemPriceField.getText());
                 int tijd = Integer.parseInt(menuItemPreptimeField.getText());
-                String gerecht = menuItem.getText(); 
+                String gerecht = menuItemRecipeField.getText(); 
 
                 consumptionAdminManager.saveGerecht(naam, prijs, gerecht, tijd);
 
