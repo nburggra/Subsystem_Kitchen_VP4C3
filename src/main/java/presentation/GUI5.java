@@ -7,9 +7,12 @@ package presentation;
 
 import businesslogic.ConsumptionAdminManager;
 import businesslogic.OrderAdminManager;
+import businesslogic.UserAdminManager;
 import datastorage.OrderDAO;
+import datastorage.UserDAO;
 import domain.Consumption;
 import domain.Order;
+import domain.User;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.table.DefaultTableModel;
@@ -29,6 +32,10 @@ public class GUI5 extends javax.swing.JPanel {
         JTableOrders.setRowHeight(50);
         
         doOrdersTableRefresh();
+        
+         jTabbedPane1.setEnabledAt(1, false);
+         jTabbedPane1.setEnabledAt(2, false);
+         jTabbedPane1.setEnabledAt(3, false);
     }
     
     private void fillOrdersTable(DefaultTableModel tm) {
@@ -205,19 +212,11 @@ public class GUI5 extends javax.swing.JPanel {
         });
 
         loginButton.setText("Inloggen");
-        loginButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginButtonActionPerformed(evt);
-            }
-        });
+        loginButton.addActionListener(new LoginButtonActionPerformed());
 
         logoutButton.setText("Uitloggen");
-        logoutButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logoutButtonActionPerformed(evt);
-            }
-        });
-
+        logoutButton.addActionListener(new LoginButtonActionPerformed());
+        
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -601,9 +600,7 @@ public class GUI5 extends javax.swing.JPanel {
         // TODO add your handling code here:
     }                                                  
 
-    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        // TODO add your handling code here:
-    }                                           
+                                            
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
         // TODO add your handling code here:
@@ -671,16 +668,74 @@ public class GUI5 extends javax.swing.JPanel {
         }
     }
        
+               
+       
+       class LoginButtonActionPerformed implements ActionListener {
+        public void actionPerformed( ActionEvent e) {
+            
+            String usernameInput = usernameEntryField.getText();
+            String passwordInput = passwordEntryField.getText();
+            User u = userAdminManager.matchLogin(usernameInput, passwordInput);
+        
+        
+            if (u == null)
+            {
+                setRegisterFieldBlank();
+                
+                signedInAsField.setText("Foute inloggegevens");
+                
+                signedIn = false;
+                
+                
+            }
+            else
+            {
+                setRegisterFieldBlank();
+                
+                signedInAsField.setText("Ingelogd als : " + u.getName());
+                
+                signedIn = true;
+                
+                jTabbedPane1.setEnabledAt(1, true);
+                jTabbedPane1.setEnabledAt(2, true);
+                jTabbedPane1.setEnabledAt(3, true);
+            
+            }
+        }
+    }
+       
+       class LogoutButtonActionPerformed implements ActionListener {
+        public void actionPerformed( ActionEvent e) {
+       
+            signedInAsField.setText("Uitgelogd!");
+            
+            jTabbedPane1.setEnabledAt(1, false);
+            jTabbedPane1.setEnabledAt(2, false);
+            jTabbedPane1.setEnabledAt(3, false);
+            
+        }
+    }
+       
+          
+     
           public void appendToOutputTextArea(String txt)
      {
          outputArea.setText(outputArea.getText() + txt);
      }
+          
+
+          
     public void setTextAreaBlank(){
     
         outputArea.setText("");
     }
     public void setTextfieldsBlank() {
         setTextFieldsText("","","","");
+    }
+    
+    public void setRegisterFieldBlank(){
+        usernameEntryField.setText("");
+        passwordEntryField.setText("");
     }
 
     public void setTextFieldsText(String Naam, String Nr, String Prijs, 
@@ -749,7 +804,11 @@ public class GUI5 extends javax.swing.JPanel {
     private javax.swing.JTextField signedInAsField;
     private javax.swing.JTextField usernameEntryField;
     // End of variables declaration                   
- private OrderAdminManager orderAdminManager = new OrderAdminManager();
+     private OrderAdminManager orderAdminManager = new OrderAdminManager();
      private ConsumptionAdminManager consumptionAdminManager = new ConsumptionAdminManager();
+     private UserAdminManager userAdminManager = new UserAdminManager();
      private OrderDAO orderDAO = new OrderDAO();
+     private UserDAO userDAO = new UserDAO();
+     
+     private boolean signedIn = false;
 }
