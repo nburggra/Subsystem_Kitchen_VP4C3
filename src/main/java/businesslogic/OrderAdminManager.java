@@ -8,6 +8,7 @@ import datastorage.ConsumptionDAO;
 import datastorage.OrderDAO;
 import domain.Consumption;
 import domain.Order;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -52,6 +53,9 @@ public class OrderAdminManager {
          orderLijst = (new OrderDAO()).loadOrders();
     }
     
+
+    
+   
     //private String orders;
     
 

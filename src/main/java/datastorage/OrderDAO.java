@@ -86,7 +86,7 @@ DatabaseConnection connection = new DatabaseConnection();
             {
                 // If a connection was successfully setup, execute the SELECT statement.
                 
-                String execStr = String.format("UPDATE `order` SET Status='%s'"
+                String execStr = String.format("UPDATE `ordercontent` SET Status='%s'"
                         + " WHERE OrderID='%d'", Status, orderId);
                         
                 // System.out.println(execStr);
@@ -97,4 +97,9 @@ DatabaseConnection connection = new DatabaseConnection();
             }
    
    }
-} 
+   
+   
+   
+}
+ 
+

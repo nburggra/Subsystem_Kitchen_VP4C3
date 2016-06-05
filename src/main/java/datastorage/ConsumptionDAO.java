@@ -54,7 +54,7 @@ public class ConsumptionDAO {
                     while(resultset.next()){
 
                         // returned generate consumptionID from previous query
-                        int consumptionId = resultset.getInt(1);
+                       int consumptionId = resultset.getInt(1);
 
 
                         String execStr = String.format("INSERT INTO consumption_product("

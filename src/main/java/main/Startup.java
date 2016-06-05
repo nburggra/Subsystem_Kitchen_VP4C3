@@ -42,14 +42,13 @@ public class Startup {
        (new ConsumptionDAO()).saveGerecht(g); */
         
        JFrame Frame = new JFrame();
-       Frame.setSize(500, 400);
+       Frame.setSize(700, 600);
        Frame.setDefaultCloseOperation(
        JFrame.EXIT_ON_CLOSE);    
        Frame.setTitle("Hartige Hap");
-       Frame.setContentPane(new presentation.GUI4());
+       Frame.setContentPane(new presentation.GUI5());
        Frame.setVisible(true);
-       
- 
+      
        
        
     }
