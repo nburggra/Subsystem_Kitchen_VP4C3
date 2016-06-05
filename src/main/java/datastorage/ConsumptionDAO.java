@@ -81,16 +81,17 @@ public class ConsumptionDAO {
                 
                         
                 ResultSet resultset = connection.executeSQLSelectStatement(
-                    "SELECT * FROM consumption;");
+                    "SELECT * FROM recipe;");
                 
             try {
                 while(resultset.next()){
                     
-                    int gerechtID = resultset.getInt("GerechtID");
-                    String naam = resultset.getString("Naam");
-                    double prijs =  resultset.getDouble("Prijs");
-                    String recept = resultset.getString("Recept");
-                    int bereidingstijd = resultset.getInt("Bereidingstijd");
+                    int gerechtID = resultset.getInt("ConsumptionID");
+                    String naam = resultset.getString("ConsumptionName");
+                    double prijs =  resultset.getDouble("ConsumptionPrice");
+                    int bereidingstijd = resultset.getInt("ConsumptionTime");
+                    String recept = resultset.getString("Description");
+                   
                     
                     // int GerechtID,String Naam, double Prijs, String Recept, int Bereidingstijd
                     Consumption g = new Consumption(gerechtID, naam, prijs, recept, bereidingstijd);

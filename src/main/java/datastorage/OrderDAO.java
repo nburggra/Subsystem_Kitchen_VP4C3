@@ -50,19 +50,19 @@ public class OrderDAO
                 
                         
                 ResultSet resultset = connection.executeSQLSelectStatement(
-                    "SELECT * FROM `order`");
+                    "SELECT * FROM `ordercontent`");
                 
             try {
                 while(resultset.next()){
                     
-                    int bestellingID = resultset.getInt("OrderID");
-                    int tafelID = resultset.getInt("TafelID");
-                    String omschrijving =  resultset.getString("Consumptions");
+                    int orderID = resultset.getInt("OrderID");
+                    String consumption = resultset.getString("Consumption");
+                    String consumptionType =  resultset.getString("ConsumptionType");
                     String status = resultset.getString("Status");
                     
                     
                     // public Order(int bestellingID , int tafelID , String omschrijving , boolean Status)
-                    Order o = new Order(bestellingID, tafelID, omschrijving, status);
+                    Order o = new Order(orderID, consumption, consumptionType, status);
                     
                     orderLijst.add(o);
                     

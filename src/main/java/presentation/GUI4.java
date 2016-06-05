@@ -39,9 +39,9 @@ public class GUI4 extends javax.swing.JPanel {
             
             if (o.getStatus().equals("Sent")) continue;
             
-            String bID = "" + o.getBestellingID();
-            String tID = "" + o.getTafelID();
-            String oms = "" + o.getOmschrijving();
+            String bID = "" + o.getOrderID();
+            String tID = "" + o.getConsumption();
+            String oms = "" + o.getConsumptionType();
             String sta = "" + o.getStatus();
             
             Object[] row = new Object[]{bID, tID, oms, sta};
@@ -353,7 +353,7 @@ public class GUI4 extends javax.swing.JPanel {
                 {null, null, null, null},
             },
             new String [] {
-                "ID", "Gerechten", "Gerecht bereid", "Gerecht verstuurt"
+                "ID", "Gerechten", "Gerecht Type", "Status"
             }
         ));
         jScrollPane4.setViewportView(JTableOrders);
@@ -412,11 +412,7 @@ public class GUI4 extends javax.swing.JPanel {
         addMenuItemButton.addActionListener(new addMenuItemButtonActionPerformed());
 
         searchMenuItemButton.setText("Zoek gerecht (op naam)");
-        searchMenuItemButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchMenuItemButtonActionPerformed(evt);
-            }
-        });
+        searchMenuItemButton.addActionListener(new searchMenuItemButtonActionPerformed()); 
 
         outputArea.setColumns(20);
         outputArea.setRows(5);
@@ -615,12 +611,14 @@ public class GUI4 extends javax.swing.JPanel {
             if (g == null)
             {
                 setTextfieldsBlank();
+                setTextAreaBlank();
             }
             else
             {
-                String txt = String.format("Naam: %s, ID: %d, Prijs: %f"
-                        + ", Tijd: %d\n", g.getNaam(), g.getGerechtID(),
-                        g.getPrice(), g.getPreparationTime());
+                setTextAreaBlank();
+                String txt = String.format(" ConsumptionName: %s,\n ConsumptionID: %d,\n ConsumptionPrice: %f,\n"
+                        + " ConsumptionTime: %d,\n Description: %s\n", g.getNaam(), g.getGerechtID(),
+                        g.getPrice(), g.getPreparationTime(), g.getRecipe());
                 
                 appendToOutputTextArea(txt);
             
@@ -632,6 +630,10 @@ public class GUI4 extends javax.swing.JPanel {
      {
          outputArea.setText(outputArea.getText() + txt);
      }
+    public void setTextAreaBlank(){
+    
+        outputArea.setText("");
+    }
     public void setTextfieldsBlank() {
         setTextFieldsText("","","","");
     }

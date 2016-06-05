@@ -13,9 +13,9 @@ import java.util.Date;
  */
 public class Order {
     
-    private int bestellingID;
-    private int tafelID;
-    private String omschrijving;
+    private int orderID;
+    private String consumption;
+    private String consumptionType;
     private String status;
     
     /**
@@ -26,50 +26,59 @@ public class Order {
      * @param copy het Copy dat het Member heeft geleend
      * @param returnDate datum op welke het copy geretourneerd dient te worden.
      */
-    public Order(int bestellingID , int tafelID , String omschrijving , String status)
+    public Order(int orderID, String consumption, String consumptionType , String status)
     {
-        this.bestellingID = bestellingID;
-        this.tafelID = tafelID;
-        this.omschrijving = omschrijving;
+        this.orderID = orderID;
+        this.consumption = consumption;
+        this.consumptionType = consumptionType;
         this.status = status;
         
     }
     
     
-        public int getBestellingID(){
+        public int getOrderID(){
         
             
-            return bestellingID;
+            return orderID;
         }
         
-        public void setBestellingID(int bestellingID){
+        public void setOrderID(int orderID){
         
-            this.bestellingID = bestellingID;
+            this.orderID = orderID;
         }
         
-        public int getTafelID(){
         
-            return tafelID;
+        public String getConsumption(){
+        
+            return consumption;
         }
         
-        public void setTafelID(int tafelID){
+        public void setConsumption(String consumption){
         
-            this.tafelID = tafelID;
+            this.consumption = consumption;
         }
         
-        public String getOmschrijving(){
+        public String getConsumptionType(){
         
-            return omschrijving;
+            return consumptionType;
         }
         
-        public void setOmschrijving(String omschrijving){
+        public void setConsumptionType(String consumptionType){
         
-            this.omschrijving = omschrijving;
+            this.consumptionType = consumptionType;
         }
         
-        public String getStatus(){ return status; }
+        public String getStatus(){ 
+            
+            return status; 
+        }
         
-        public void setStatus(){}
+        
+        
+        public void setStatus(String status){
+        
+            this.status = status;
+        }
         
         
         

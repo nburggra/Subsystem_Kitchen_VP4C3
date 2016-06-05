@@ -35,12 +35,12 @@ public class GUI3unactive extends javax.swing.JPanel {
             //new Object[]
             
 // <<<<<<< HEAD:src/main/java/presentation/GUI3.java
-           String bid = "" +  o.getBestellingID();
+           String bid = "" +  o.getOrderID();
 
 // =======
-           String bID = "" +  o.getBestellingID();
-           String tID = "" + o.getTafelID();
-           String oms = "" + o.getOmschrijving();
+           String bID = "" +  o.getOrderID();
+           String tID = "" + o.getConsumption();
+          String oms = "" + o.getConsumptionType();
            String sta = "" + o.getStatus();
 // >>>>>>> f4f1b8d830a6f157bdb418aa716a9ab57fff2385:src/main/java/presentation/GUI3unactive.java
            
