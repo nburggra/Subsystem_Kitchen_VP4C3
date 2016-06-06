@@ -13,8 +13,11 @@ import datastorage.UserDAO;
 import domain.Consumption;
 import domain.Order;
 import domain.User;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -521,7 +524,16 @@ public class GUI5 extends javax.swing.JPanel {
         });
 
         fullscreenCheck.setText("jCheckBox2");
-
+        /*fullscreenCheck.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(ItemEvent e) {
+              GraphicsDevice device = GraphicsEnvironment
+        .getLocalGraphicsEnvironment().getScreenDevices()[0];
+              if(fullscreenCheck.isSelected()){
+                 // device.setFullScreenWindow(Startup.Frame);
+              }
+                  
+            }
+        });*/
         jLabel2.setText("Fullscreen");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
