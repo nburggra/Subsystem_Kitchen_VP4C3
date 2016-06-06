@@ -25,9 +25,9 @@ public class ConsumptionDAO {
         // has been added to explicitely make this clear.
     }
     
-    public void saveGerecht(Consumption gerecht)
+    public void saveConsumption(Consumption consumption)
     { 
-        if(gerecht != null)
+        if(consumption != null)
         {
             // First open a database connnection
             DatabaseConnection connection = new DatabaseConnection();
@@ -38,10 +38,10 @@ public class ConsumptionDAO {
                     PreparedStatement prest;
 
                     // If a connection was successfully setup, execute the SELECT statement.
-                    String s = String.format( "INSERT INTO consumption (ConsumptionName,ConsumptionPrice,"
+                    String s = String.format("INSERT INTO consumption (ConsumptionName,ConsumptionPrice,"
                             + "ConsumptionTime) VALUES('%s','%f','%d');", 
-                            gerecht.getNaam(), gerecht.getPrice(), 
-                                                    gerecht.getPreparationTime());
+                            consumption.getNaam(), consumption.getPrice(), 
+                                                    consumption.getPreparationTime());
 
                     prest = connection.getConnection().prepareStatement(s, 
                             Statement.RETURN_GENERATED_KEYS);
@@ -60,7 +60,7 @@ public class ConsumptionDAO {
                         String execStr = String.format("INSERT INTO consumption_product("
                                 + "ConsumptionID, Description) "
                                 + "VALUES('%d','%s')", consumptionId, 
-                                gerecht.getRecipe());
+                                consumption.getRecipe());
                         connection.executeSQLInsertStatement(execStr);
                     }
                 } catch (SQLException ex) {
@@ -70,9 +70,9 @@ public class ConsumptionDAO {
         }
     }
     
-    public ArrayList<Consumption> loadGerechten() {
+    public ArrayList<Consumption> loadConsumptions() {
     
-        ArrayList<Consumption> gerechten = new ArrayList<>();
+        ArrayList<Consumption> consumptions = new ArrayList<>();
         
         DatabaseConnection connection = new DatabaseConnection();
             if(connection.openConnection())
@@ -86,17 +86,17 @@ public class ConsumptionDAO {
             try {
                 while(resultset.next()){
                     
-                    int gerechtID = resultset.getInt("ConsumptionID");
-                    String naam = resultset.getString("ConsumptionName");
-                    double prijs =  resultset.getDouble("ConsumptionPrice");
-                    int bereidingstijd = resultset.getInt("ConsumptionTime");
-                    String recept = resultset.getString("Description");
+                    int consumptionID = resultset.getInt("ConsumptionID");
+                    String name = resultset.getString("ConsumptionName");
+                    double price =  resultset.getDouble("ConsumptionPrice");
+                    int preparationTime = resultset.getInt("ConsumptionTime");
+                    String recipe = resultset.getString("Description");
                    
                     
                     // int GerechtID,String Naam, double Prijs, String Recept, int Bereidingstijd
-                    Consumption g = new Consumption(gerechtID, naam, prijs, recept, bereidingstijd);
+                    Consumption g = new Consumption(consumptionID, name, price, recipe, preparationTime);
                     
-                    gerechten.add(g);
+                    consumptions.add(g);
                     
                     
                 }
@@ -108,6 +108,6 @@ public class ConsumptionDAO {
                 connection.closeConnection();
             }
             
-            return gerechten;
+            return consumptions;
     }
 } 

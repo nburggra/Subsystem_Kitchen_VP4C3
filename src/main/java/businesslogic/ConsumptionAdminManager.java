@@ -15,21 +15,21 @@ import java.util.ArrayList;
  */
 public class ConsumptionAdminManager {
     
-    ArrayList<Consumption> gerechten;
+    ArrayList<Consumption> consumptions;
     
         public ConsumptionAdminManager(){
         
-        gerechten = (new ConsumptionDAO()).loadGerechten();
+        consumptions = (new ConsumptionDAO()).loadConsumptions();
         
         
         
         }
         
-            public Consumption findGerecht(String name)
+            public Consumption findConsumption(String name)
     {
         name = name.toLowerCase();
         Consumption ge = null;
-        for(Consumption g : gerechten)
+        for(Consumption g : consumptions)
         {
             if (g.getNaam().toLowerCase().equals(name))
             {
@@ -42,11 +42,11 @@ public class ConsumptionAdminManager {
     }
             
     
-          public void saveGerecht(String Naam, double Prijs, String Recept, int Bereidingstijd){
+          public void saveConsumption(String name, double price, String recipe, int preparationTime){
       
-          Consumption g = new Consumption(0, Naam, Prijs, Recept, Bereidingstijd);
+          Consumption g = new Consumption(0, name, price, recipe, preparationTime);
           
-          (new ConsumptionDAO()).saveGerecht(g);
+          (new ConsumptionDAO()).saveConsumption(g);
       
       }
 }

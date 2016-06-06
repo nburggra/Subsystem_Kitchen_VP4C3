@@ -569,6 +569,7 @@ public class GUI5 extends javax.swing.JPanel {
         );
 
         jTabbedPane1.addTab("Opties", jPanel6);
+        
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -642,7 +643,7 @@ public class GUI5 extends javax.swing.JPanel {
                 int time = Integer.parseInt(menuItemPreptimeField.getText());
                 String recipe = outputArea.getText(); 
 
-                consumptionAdminManager.saveGerecht(name, price, recipe, time);
+                consumptionAdminManager.saveConsumption(name, price, recipe, time);
 
                 setTextfieldsBlank();
                 setTextAreaBlank();
@@ -662,7 +663,7 @@ public class GUI5 extends javax.swing.JPanel {
         public void actionPerformed( ActionEvent e) {
             
             String nameInput = menuItemNameField.getText();
-            Consumption g = consumptionAdminManager.findGerecht(nameInput);
+            Consumption g = consumptionAdminManager.findConsumption(nameInput);
             
             if (g == null)
             {
@@ -741,7 +742,9 @@ public class GUI5 extends javax.swing.JPanel {
             String consumptionOrder = orderConsumptionField.getText();
             int consumptionID = Integer.parseInt(inputOrderIDField.getText());
             orderAdminManager.deleteFromOrder(consumptionOrder, consumptionID);
-            doOrdersTableRefresh();      
+            doOrdersTableRefresh();  
+            orderConsumptionField.setText("");
+            inputOrderIDField.setText("");
             
         }
        } 
@@ -753,6 +756,8 @@ public class GUI5 extends javax.swing.JPanel {
             int consumptionId = Integer.parseInt(inputOrderIDField.getText());
             orderAdminManager.insertIntoOrder(consumptionId, consumptionOrder, "Meal", "Recieved");
             doOrdersTableRefresh();
+            orderConsumptionField.setText("");
+            inputOrderIDField.setText("");
             
         }
        }

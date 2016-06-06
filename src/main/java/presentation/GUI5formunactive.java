@@ -620,7 +620,7 @@ public class GUI5formunactive extends javax.swing.JPanel {
                 int tijd = Integer.parseInt(menuItemPreptimeField.getText());
                 String gerecht = menuItemRecipeField.getText(); 
 
-                consumptionAdminManager.saveGerecht(naam, prijs, gerecht, tijd);
+                consumptionAdminManager.saveConsumption(naam, prijs, gerecht, tijd);
 
                 setTextfieldsBlank();
             }
@@ -638,7 +638,7 @@ public class GUI5formunactive extends javax.swing.JPanel {
         public void actionPerformed( ActionEvent e) {
             
             String nameInput = menuItemNameField.getText();
-            Consumption g = consumptionAdminManager.findGerecht(nameInput);
+            Consumption g = consumptionAdminManager.findConsumption(nameInput);
             
             if (g == null)
             {
