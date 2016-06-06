@@ -18,7 +18,9 @@ import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
+import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
+import main.Startup;
 
 /**
  *
@@ -46,7 +48,7 @@ public class GUI5 extends javax.swing.JPanel {
         
         for(Order o : orderAdminManager.getOrderLijst() )
         {      
-            
+       
             if (o.getStatus().equals("Sent")) continue;
             
             String bID = "" + o.getOrderID();
@@ -334,6 +336,7 @@ public class GUI5 extends javax.swing.JPanel {
         jLabel11.setText("Gerecht");
 
         addToOrderButton.setText("Voeg gerecht toe aan bestelling");
+        addToOrderButton.addActionListener(new addToOrderButtonActionPerformed());
 
         deleteFromOrderButton.setText("Verwijder uit gerecht uit bestelling");
         deleteFromOrderButton.addActionListener(new deleteFromOrderButtonActionPerformed());
@@ -523,17 +526,17 @@ public class GUI5 extends javax.swing.JPanel {
             }
         });
 
-        fullscreenCheck.setText("jCheckBox2");
-        /*fullscreenCheck.addItemListener(new java.awt.event.ItemListener() {
+      /*  fullscreenCheck.setText("jCheckBox2");
+        fullscreenCheck.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(ItemEvent e) {
-              GraphicsDevice device = GraphicsEnvironment
-        .getLocalGraphicsEnvironment().getScreenDevices()[0];
+              GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
               if(fullscreenCheck.isSelected()){
-                 // device.setFullScreenWindow(Startup.Frame);
+                  device.setFullScreenWindow(Frame);
               }
                   
             }
         });*/
+        
         jLabel2.setText("Fullscreen");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -742,7 +745,17 @@ public class GUI5 extends javax.swing.JPanel {
             
         }
        } 
-          
+       
+       class addToOrderButtonActionPerformed implements ActionListener {
+        public void actionPerformed( ActionEvent e) {
+            
+            String consumptionOrder = orderConsumptionField.getText();
+            int consumptionId = Integer.parseInt(inputOrderIDField.getText());
+            orderAdminManager.insertIntoOrder(consumptionId, consumptionOrder, "Meal", "Recieved");
+            doOrdersTableRefresh();
+            
+        }
+       }
      
           public void appendToOutputTextArea(String txt)
      {

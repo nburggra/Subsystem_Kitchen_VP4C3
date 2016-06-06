@@ -48,6 +48,13 @@ public class OrderAdminManager {
         (new OrderDAO()).changeOrderStatus(orderId, status);
     }
     
+    public void insertIntoOrder(int orderId, String consumption, String ConsumptionType, String status){
+        
+        Order o = new Order(orderId, consumption, ConsumptionType, status);
+        
+        (new OrderDAO()).insertIntoOrder(o);
+    }
+    
     public void deleteFromOrder(String consumption, int orderId){
         
         (new OrderDAO()).deleteFromOrder(consumption, orderId);

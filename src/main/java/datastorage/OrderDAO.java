@@ -50,7 +50,7 @@ public class OrderDAO
                 
                         
                 ResultSet resultset = connection.executeSQLSelectStatement(
-                    "SELECT * FROM `ordercontent`");
+                    "SELECT * FROM `ordercontent` WHERE `ConsumptionType` = 'Meal' ");
                 
             try {
                 while(resultset.next()){
@@ -98,13 +98,20 @@ public class OrderDAO
    
    }
    
-        public void insertIntoOrder(int orderId, String consumption){
+        public void insertIntoOrder(Order o){
             
             DatabaseConnection connection = new DatabaseConnection();
             if(connection.openConnection())
             {
-               String execStr = String.format("UPDATE `ordercontent` SET consumption='%s'"
-                        + " WHERE OrderID='%d'", consumption, orderId);
+               String execStr = String.format("INSERT INTO `ordercontent` "
+                       + "(`OrderID`, `Consumption`, `ConsumptionType`, `Status`) "
+                       + "VALUES ('%d', '%s', '%s', '%s')"
+                       , o.getOrderID() , o.getConsumption() 
+                       , o.getConsumptionType() , o.getStatus());
+               
+               connection.executeSQLInsertStatement(execStr);
+               
+               connection.closeConnection();
             }
         }
             
