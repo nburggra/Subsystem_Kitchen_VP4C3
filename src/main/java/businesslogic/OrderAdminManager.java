@@ -48,6 +48,11 @@ public class OrderAdminManager {
         (new OrderDAO()).changeOrderStatus(orderId, status);
     }
     
+    public void deleteFromOrder(String consumption, int orderId){
+        
+        (new OrderDAO()).deleteFromOrder(consumption, orderId);
+    }
+    
     public void refreshOrdersList()
     {
          orderLijst = (new OrderDAO()).loadOrders();

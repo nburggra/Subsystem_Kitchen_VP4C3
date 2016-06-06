@@ -146,7 +146,7 @@ public class GUI5 extends javax.swing.JPanel {
         sentButton = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
-        menuItemRecipeField = new javax.swing.JTextField();
+        orderConsumptionField = new javax.swing.JTextField();
         addToOrderButton = new javax.swing.JButton();
         deleteFromOrderButton = new javax.swing.JButton();
         inputOrderIDField = new javax.swing.JTextField();
@@ -194,7 +194,9 @@ public class GUI5 extends javax.swing.JPanel {
         );
 
         jLabel7.setText("Ingelogd als :");
-
+        
+        signedInAsField.setEditable(false);
+        
         signedInAsField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 signedInAsFieldActionPerformed(evt);
@@ -215,7 +217,7 @@ public class GUI5 extends javax.swing.JPanel {
         loginButton.addActionListener(new LoginButtonActionPerformed());
 
         logoutButton.setText("Uitloggen");
-        logoutButton.addActionListener(new LoginButtonActionPerformed());
+        logoutButton.addActionListener(new LogoutButtonActionPerformed());
         
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -331,6 +333,7 @@ public class GUI5 extends javax.swing.JPanel {
         addToOrderButton.setText("Voeg gerecht toe aan bestelling");
 
         deleteFromOrderButton.setText("Verwijder uit gerecht uit bestelling");
+        deleteFromOrderButton.addActionListener(new deleteFromOrderButtonActionPerformed());
 
         jLabel10.setText("ID");
 
@@ -348,7 +351,7 @@ public class GUI5 extends javax.swing.JPanel {
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(jLabel11)
                         .addGap(18, 18, 18)
-                        .addComponent(menuItemRecipeField, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(orderConsumptionField, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(deleteFromOrderButton, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
@@ -366,7 +369,7 @@ public class GUI5 extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(menuItemRecipeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(orderConsumptionField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(addToOrderButton))
                     .addComponent(jLabel11))
                 .addContainerGap())
@@ -602,9 +605,6 @@ public class GUI5 extends javax.swing.JPanel {
 
                                             
 
-    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
-        // TODO add your handling code here:
-    }                                            
 
     private void readyIdTFActionPerformed(java.awt.event.ActionEvent evt) {                                          
         // TODO add your handling code here:
@@ -706,7 +706,9 @@ public class GUI5 extends javax.swing.JPanel {
        
        class LogoutButtonActionPerformed implements ActionListener {
         public void actionPerformed( ActionEvent e) {
-       
+            
+            signedInAsField.setText("");
+            
             signedInAsField.setText("Uitgelogd!");
             
             jTabbedPane1.setEnabledAt(1, false);
@@ -716,6 +718,18 @@ public class GUI5 extends javax.swing.JPanel {
         }
     }
        
+       class deleteFromOrderButtonActionPerformed implements ActionListener {
+        public void actionPerformed( ActionEvent e) {
+            
+            
+            
+            String consumptionOrder = orderConsumptionField.getText();
+            int consumptionID = Integer.parseInt(inputOrderIDField.getText());
+            orderAdminManager.deleteFromOrder(consumptionOrder, consumptionID);
+            doOrdersTableRefresh();      
+            
+        }
+       } 
           
      
           public void appendToOutputTextArea(String txt)
@@ -793,7 +807,7 @@ public class GUI5 extends javax.swing.JPanel {
     private javax.swing.JTextField menuItemNameField;
     private javax.swing.JTextField menuItemPreptimeField;
     private javax.swing.JTextField menuItemPriceField;
-    private javax.swing.JTextField menuItemRecipeField;
+    private javax.swing.JTextField orderConsumptionField;
     private javax.swing.JTextArea outputArea;
     private javax.swing.JPasswordField passwordEntryField;
     private javax.swing.JButton readyButton;

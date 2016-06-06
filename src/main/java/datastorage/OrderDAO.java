@@ -79,9 +79,9 @@ public class OrderDAO
             return orderLijst;
     }
    
-   public void changeOrderStatus(int orderId, String Status){
+        public void changeOrderStatus(int orderId, String Status){
    
-DatabaseConnection connection = new DatabaseConnection();
+            DatabaseConnection connection = new DatabaseConnection();
             if(connection.openConnection())
             {
                 // If a connection was successfully setup, execute the SELECT statement.
@@ -98,8 +98,37 @@ DatabaseConnection connection = new DatabaseConnection();
    
    }
    
+        public void insertIntoOrder(int orderId, String consumption){
+            
+            DatabaseConnection connection = new DatabaseConnection();
+            if(connection.openConnection())
+            {
+               String execStr = String.format("UPDATE `ordercontent` SET consumption='%s'"
+                        + " WHERE OrderID='%d'", consumption, orderId);
+            }
+        }
+            
+        public void deleteFromOrder(String consumption, int orderId){
+             DatabaseConnection connection = new DatabaseConnection();
+            if(connection.openConnection())
+            {
+               String execStr = String.format(
+               "DELETE FROM `ordercontent` WHERE consumption='%s' AND OrderID='%d'"
+               , consumption, orderId);
+               
+               connection.executeSQLDeleteStatement(execStr);
+               
+               connection.closeConnection();
+                       
+            }
+        }
+            
    
    
-}
+   }
+   
+   
+   
+
  
 
